@@ -41,9 +41,9 @@ int main(int argc, char* argv[])
     FLASH_INIT_CONFIG.read_data[0] = 0x03;
     FLASH_INIT_CONFIG.write_data[0] = 0x02;
     FLASH_INIT_CONFIG.page_size = 0x20;
-    FLASH_INIT_CONFIG.page_num = 0x800;
+    FLASH_INIT_CONFIG.page_num = 0x100;
     FLASH_INIT_CONFIG.addr_bytes = 0x02;
-    FLASH_INIT_CONFIG.addr_shift = 0x08;
+    FLASH_INIT_CONFIG.addr_shift = 0x05;
     ret = VSI_FlashInit(0,0,&FLASH_INIT_CONFIG);
     if (ret != ERR_SUCCESS)
     {
