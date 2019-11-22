@@ -1,25 +1,0 @@
-Dependencies for Project 'ficus_application', Target 'Flash': (DO NOT MODIFY !)
-F (..\USER\main.c)(0x5DB1B674)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS\Device\ST\STM32F4xx\Include -I..\CMSIS\Include -I..\USER\I2C -I..\USER-I "D:\ViewTool\ficus_f4\FicusF4 Driver Example\Application_I2C\RVMDK\RTE"-I E:\1.Program_Software\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I E:\1.Program_Software\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F407xx -DSTM32F40_41xxx --C99-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
-I (..\USER\stm32f4xx_conf.h)(0x5DA46EF2)
-I (..\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5DA46EF2)
-I (..\CMSIS\Include\core_cm4.h)(0x5DA46EF2)
-I (E:\1.Program_Software\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55DB2B80)
-I (..\CMSIS\Include\core_cmInstr.h)(0x5DA46EF2)
-I (..\CMSIS\Include\core_cmFunc.h)(0x5DA46EF2)
-I (..\CMSIS\Include\core_cm4_simd.h)(0x5DA46EF2)
-I (..\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x5DA46EF2)
-I (..\USER\I2C\vt_i2c.h)(0x5DC2E6FA)
-I (E:\1.Program_Software\Keil_v5\ARM\ARMCC\include\stdio.h)(0x55DB2B76)
-F (..\USER\stm32fxxx_it.c)(0x5DC18D2F)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS\Device\ST\STM32F4xx\Include -I..\CMSIS\Include -I..\USER\I2C -I..\USER-I "D:\ViewTool\ficus_f4\FicusF4 Driver Example\Application_I2C\RVMDK\RTE"-I E:\1.Program_Software\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I E:\1.Program_Software\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F407xx -DSTM32F40_41xxx --C99-o .\objects\stm32fxxx_it.o --omf_browse .\objects\stm32fxxx_it.crf --depend .\objects\stm32fxxx_it.d)
-I (..\USER\stm32fxxx_it.h)(0x5DA46EF2)
-I (E:\1.Program_Software\Keil_v5\ARM\ARMCC\include\string.h)(0x55DB2B78)
-F (..\VTLIB\ficus_f4_dll.lib)(0x5DD2B3CC)()
-F (..\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\system_stm32f4xx.c)(0x5DA46EF2)(-c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork -I..\CMSIS\Device\ST\STM32F4xx\Include -I..\CMSIS\Include -I..\USER\I2C -I..\USER-I "D:\ViewTool\ficus_f4\FicusF4 Driver Example\Application_I2C\RVMDK\RTE"-I E:\1.Program_Software\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I E:\1.Program_Software\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="517" -D_RTE_ -DSTM32F407xx -DSTM32F40_41xxx --C99-o .\objects\system_stm32f4xx.o --omf_browse .\objects\system_stm32f4xx.crf --depend .\objects\system_stm32f4xx.d)
-I (..\CMSIS\Device\ST\STM32F4xx\Include\stm32f4xx.h)(0x5DA46EF2)
-I (..\CMSIS\Include\core_cm4.h)(0x5DA46EF2)
-I (E:\1.Program_Software\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55DB2B80)
-I (..\CMSIS\Include\core_cmInstr.h)(0x5DA46EF2)
-I (..\CMSIS\Include\core_cmFunc.h)(0x5DA46EF2)
-I (..\CMSIS\Include\core_cm4_simd.h)(0x5DA46EF2)
-I (..\CMSIS\Device\ST\STM32F4xx\Include\system_stm32f4xx.h)(0x5DA46EF2)
-F (..\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\startup_stm32f4xx.s)(0x5DA46EF2)(--cpu Cortex-M4.fp -g --apcs=interwork --pd "__MICROLIB SETA 1"-I "D:\ViewTool\ficus_f4\FicusF4 Driver Example\Application_I2C\RVMDK\RTE"-I E:\1.Program_Software\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I E:\1.Program_Software\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.9.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include--pd "__UVISION_VERSION SETA 517" --pd "_RTE_ SETA 1" --pd "STM32F407xx SETA 1"--list .\listings\startup_stm32f4xx.lst --xref -o .\objects\startup_stm32f4xx.o --depend .\objects\startup_stm32f4xx.d)
