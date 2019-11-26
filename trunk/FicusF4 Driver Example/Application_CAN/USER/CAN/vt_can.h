@@ -34,11 +34,11 @@
 
 
 //Function return status
-#define	STATUS_OK					1
-#define STATUS_ERR					0
+#define	STATUS_OK					0
+#define STATUS_ERR					1
 
 
-#define SWD_Debug   1
+#define SWD_Debug   0
 
 #if SWD_Debug
 #define ITM_Port8(n)    (*((volatile unsigned char *)(0xE0000000+4*n)))
@@ -72,7 +72,7 @@ struct __FILE
 
 FILE __stdout;       
   
-_sys_exit(int x) 
+int _sys_exit(int x) 
 { 
 	x = x; 
 } 
@@ -128,14 +128,14 @@ typedef struct _VCI_CAN_STATUS{
 }VCI_CAN_STATUS,*PVCI_CAN_STATUS;
 
 //4.definition of error data type
-typedef struct _ERR_INFO{
+typedef struct _VCI_CAN_ERR_INFO{
 	uint32_t	ErrCode;			//error code
 	uint8_t	Passive_ErrData[3];	//error identification data when error has passive error
 	uint8_t	ArLost_ErrData;		//error identification data when error has arbitration lost error
 } VCI_ERR_INFO,*PVCI_ERR_INFO;
 
 //5.definition of CAN initialization data type
-typedef struct _INIT_CONFIG{
+typedef struct _VCI_INIT_CONFIG{
 	uint32_t	AccCode;	//ACC code (for verification)
 	uint32_t	AccMask;	//Mask code
 	uint32_t	Reserved;	//reserved
@@ -152,7 +152,7 @@ typedef  struct  _VCI_BOARD_INFO_EX{
 	uint8_t		SerialNumber[12];	//adapter serial number
 }VCI_BOARD_INFO_EX,*PVCI_BOARD_INFO_EX; 
 
-typedef struct _INIT_CONFIG_EX
+typedef struct _VCI_INIT_CONFIG_EX
 {
 	//CAN baud rate = 42MHz/(CAN_BRP)/(CAN_SJW+CAN_BS1+CAN_BS2)
 	uint32_t	CAN_BRP;	//range: 1~1024

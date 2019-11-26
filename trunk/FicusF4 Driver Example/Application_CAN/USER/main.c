@@ -100,14 +100,16 @@ int SetBaudRate(int baudrate, VCI_INIT_CONFIG_EX *config_ex)
 }
 
 #if CAN_CALLBACK_READ_DATA
-//VCI_RegisterReceiveCallback(0,GetDataCallback);
 void  GetDataCallback(uint32_t DevIndex,uint32_t CANIndex,uint32_t Len)
 {
 	int ReadDataNum;
-	int DataNum = VCI_GetReceiveNum(VCI_USBCAN2, 0, CANIndex);
+	static int data_num = 0;
+	data_num++;
+	printf("data_num = %d\n\n", data_num);
+	int DataNum = VCI_GetReceiveNum(VCI_USBCAN2, 0, 0);
 	VCI_CAN_OBJ	*pCAN_ReceiveData = (VCI_CAN_OBJ *)malloc(DataNum*sizeof(VCI_CAN_OBJ));
     if((DataNum > 0)&&(pCAN_ReceiveData != NULL)){
-        ReadDataNum = VCI_Receive(VCI_USBCAN2, 0, CANIndex, pCAN_ReceiveData, DataNum,100);
+        ReadDataNum = VCI_Receive(VCI_USBCAN2, 0, CANIndex, pCAN_ReceiveData, DataNum,0);
         for (int i = 0; i < ReadDataNum; i++)
         {
 			SPRINTF(("\n"));
@@ -144,7 +146,7 @@ int main(void)
     //Get board info
 #if CAN_GET_BOARD_INFO
 	VCI_BOARD_INFO_EX CAN_BoardInfo;
-    Status = VCI_ReadBoardInfoEx(devIndex, &CAN_BoardInfo);
+    Status = VCI_ReadBoardInfoEx(0,&CAN_BoardInfo);//It will open device
     if(Status==STATUS_ERR){
         SPRINTF(("Get board info failed!\n"));
         return 0;
@@ -174,13 +176,13 @@ int main(void)
     CAN_InitEx.CAN_Mode = 0;
 #endif
 	// set baudrate = 500Khz
-	SetBaudRate(500, &CAN_InitEx); 
+	SetBaudRate(1000, &CAN_InitEx); 
     CAN_InitEx.CAN_NART = 1;
     CAN_InitEx.CAN_RFLM = 0;
     CAN_InitEx.CAN_TXFP = 1;
 	CAN_InitEx.CAN_RELAY = 0;
 	devIndex = 0; 
-//	for(canIndex=0; canIndex<=1; canIndex++)
+	for(canIndex=0; canIndex<=1; canIndex++)
 	{
     Status = VCI_InitCANEx(VCI_USBCAN2,devIndex,canIndex,&CAN_InitEx);
 #if VT_LOG
@@ -200,7 +202,8 @@ int main(void)
             SPRINTF(("CANConfig.CAN_SJW: %d\n ",CAN_InitEx.CAN_SJW));
             SPRINTF(("CANConfig.CAN_TXFP: %d\n ",CAN_InitEx.CAN_TXFP));
 #endif
-	}		
+	}
+
 	if(Status==STATUS_ERR){
         SPRINTF(("Init device failed!\n"));
         return 0;
@@ -219,11 +222,12 @@ int main(void)
     CAN_FilterConfig.MASK_IDE = 0;
     CAN_FilterConfig.MASK_RTR = 0;
     CAN_FilterConfig.MASK_Std_Ext = 0;
-    Status = VCI_SetFilter(VCI_USBCAN2,0,canIndex,&CAN_FilterConfig);
+    Status = VCI_SetFilter(VCI_USBCAN2,0,0,&CAN_FilterConfig);
+
 	for(i=1; i<=13; i++)
 	{
         CAN_FilterConfig.FilterIndex = i;
-        Status = VCI_SetFilter(VCI_USBCAN2,0,canIndex,&CAN_FilterConfig);
+        Status = VCI_SetFilter(VCI_USBCAN2,0,0,&CAN_FilterConfig);
 	}
     if(Status==STATUS_ERR){
         SPRINTF(("Set filter failed!\n"));
@@ -254,6 +258,7 @@ int main(void)
 #endif
     //Start CAN
     Status = VCI_StartCAN(VCI_USBCAN2,0,0);
+
 //	Status = VCI_StartCAN(VCI_USBCAN2,0,1);
     if(Status==STATUS_ERR){
         SPRINTF(("Start CAN failed!\n"));
@@ -281,7 +286,11 @@ int main(void)
 #endif//CAN_MODE_LOOP_BACK
 //        Status = VCI_Transmit(VCI_USBCAN2,0,0,&CAN_SendData[j],1);
 	}
-    Status = VCI_Transmit(VCI_USBCAN2,0,canIndex,CAN_SendData,CAN_DATA_SEND_FRAME_COUNT);
+//	VCI_Transmit(VCI_USBCAN2,devIndex,sendCanIndex,CanTxMsgData,framIndex);
+ //   Status = VCI_Transmit(VCI_USBCAN2,0,0,CAN_SendData,0);
+
+//	while(Status == STATUS_ERR)
+    Status = VCI_Transmit(VCI_USBCAN2,0,0,CAN_SendData,CAN_DATA_SEND_FRAME_COUNT);
     if(Status==STATUS_ERR){
         SPRINTF(("Send CAN data failed!\n"));
         VCI_ResetCAN(VCI_USBCAN2,0,0);
@@ -291,11 +300,12 @@ int main(void)
 #endif//CAN_SEND_DATA
 
 #ifndef OS_LINUX
- //   Sleep(10);
+    Sleep(10);
 #else
 	sleep(0.01);
 #endif
 #if CAN_GET_STATUS
+
             VCI_CAN_STATUS CAN_Status;
             Status = VCI_ReadCANStatus(VCI_USBCAN2, 0, 0, &CAN_Status);
             if (Status == STATUS_ERR)

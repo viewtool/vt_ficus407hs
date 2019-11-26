@@ -26,10 +26,6 @@
 int main(int argc, char* argv[])
 {
     int ret;
-	// Adjust PWM_CH0 clock frequency
-	uint32_t Frequency[8] = {0};
-    // Adjust PWM_CH2 duty ratio
-	uint8_t Pulse[8] = {0};	
 	VPI_INIT_CONFIG PWM_Config;
     // Scan connected device 
     ret = VPI_ScanDevice(1);
@@ -68,7 +64,6 @@ int main(int argc, char* argv[])
     Sleep(1000);
     // Stop PWM_CH0 channel
     ret = VPI_StopPWM(VPI_USBPWM, 0, VPI_PWM_CH0);
-	
     if (ret != ERR_SUCCESS)
     {
         printf("Stop pwm error!\n");
@@ -87,7 +82,7 @@ int main(int argc, char* argv[])
         return ret;
     }
     // Star PWM_CH0, PWM_CH2 channel
-    ret = VPI_StartPWM(VPI_USBPWM, 0, VPI_PWM_CH0 | VPI_PWM_CH4);
+    ret = VPI_StartPWM(VPI_USBPWM, 0, VPI_PWM_CH0 | VPI_PWM_CH2);
     if (ret != ERR_SUCCESS)
     {
         printf("Start pwm error!\n");
@@ -95,16 +90,19 @@ int main(int argc, char* argv[])
     }
     // Run 1S
     Sleep(1000);
+    // Adjust PWM_CH0 clock frequency
+	uint32_t Frequency[8] = {0};
     Frequency[0] = 50000;
     ret = VPI_SetPWMPeriod(VPI_USBPWM, 0, VPI_PWM_CH0, Frequency);
-	
     if (ret != ERR_SUCCESS)
     {
         printf("Set frequency error!\n");
         return ret;
     }
-    Pulse[4] = 80;
-    ret = VPI_SetPWMPulse(VPI_USBPWM, 0, VPI_PWM_CH4, Pulse);
+    // Adjust PWM_CH2 duty ratio
+	uint8_t Pulse[8] = {0};
+    Pulse[2] = 80;
+    ret = VPI_SetPWMPulse(VPI_USBPWM, 0, VPI_PWM_CH2, Pulse);
     if (ret != ERR_SUCCESS)
     {
         printf("Set pulse error!\n");
@@ -112,10 +110,10 @@ int main(int argc, char* argv[])
     }
     // Run 1s
     Sleep(1000);
-    // Adjust PWM_CH0 and PWM_CH4 duty ratio
+    // Adjust PWM_CH0 and PWM_CH2 duty ratio
     Pulse[0] = 20;
-    Pulse[4] = 80;
-    ret = VPI_SetPWMPulse(VPI_USBPWM, 0, VPI_PWM_CH0|VPI_PWM_CH4, Pulse);
+    Pulse[2] = 80;
+    ret = VPI_SetPWMPulse(VPI_USBPWM, 0, VPI_PWM_CH0|VPI_PWM_CH2, Pulse);
     if (ret != ERR_SUCCESS)
     {
         printf("Set pulse error!\n");
