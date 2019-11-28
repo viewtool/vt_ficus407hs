@@ -24,14 +24,14 @@
 #endif
 
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char* argv[])
 {
 	int ret,i;
 	VSI_INIT_CONFIG	SPI_Init;
 	uint8_t	WriteDataTemp[512]={0};
 	uint8_t	ReadDataTemp[512]={0};
 	// Check the device number of connections
-	ret = VSI_ScanDevice();
+	ret = VSI_ScanDevice(1);
 	if(ret>0){
 		printf("The connected device number is:%d\n",ret);
 	}else{
