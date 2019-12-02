@@ -203,7 +203,7 @@ void TCS_Read_Block(uint8_t reg, uint8_t len, uint8_t *data)
     uint8_t ret = 0;
 	int num = 0;
 	/*~~~~~~~~*/
-    ret = VII_ReadBytes(VII_USBI2C, 0,0,sensorAddress_,reg,data,len);
+    ret = VII_ReadBytes(VII_USBI2C, 0,0,COLOR_SENSOR_ADDR<<1,reg,data,len);
 	printf("RecevNum:%d   ", num);
 }
 
@@ -221,6 +221,7 @@ void TCS3414_Init(void)
 	setEnableADC();
 	Sleep(10);
 }
+int green,red,blue;
 void readRGB_Block(void)
 {
 	/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
@@ -231,14 +232,27 @@ void readRGB_Block(void)
 
 	for(i = 0; i < 8; i++) color[i] = 0;
 	TCS_Read_Block(REG_GREEN_LOW, 8, color);
-	Green = (color[1] << 8) | color[0];
-	Red = (color[3] << 8) | color[2];
-	Blue = (color[5] << 8) | color[4];
+	Green = green = (color[1] << 8) | color[0];
+	Red   = red   = (color[3] << 8) | color[2];
+	Blue  = blue  = (color[5] << 8) | color[4];
 	Clear = (color[7] << 8) | color[6];
 
 	printf("Green:%d Red :%d Blue:%d Clear:%d\n", Green, Red, Blue, Clear);
 }
-
+void calculateCoordinate(void)
+{
+    double X,Y,Z,x,y,z;
+    X=(-0.14282)*red+(1.54924)*green+(-0.95641)*blue;
+    Y=(-0.32466)*red+(1.57837)*green+(-0.73191)*blue;
+    Z=(-0.68202)*red+(0.77073)*green+(0.56332)*blue;
+    x=X/(X+Y+Z);
+    y=Y/(X+Y+Z);
+    if((X>0)&&(Y>0)&&(Z>0))
+    {
+        printf("The x,y value is");
+        printf("(%02f , %02f)\r\n",x,y);
+    }
+}
 int main(int argc, char* argv[])
 {
     int ret,i;
@@ -291,11 +305,13 @@ int main(int argc, char* argv[])
     TCS3414_Init();
     uint8_t TCS3414_ID = 0x00;
     TCS3414_ID = readID();
-    printf("ID:%d\n", TCS3414_ID);
+    printf("ID:0x%02x\r\n", TCS3414_ID);
 	while(1)
 	{
 		readRGB_Block();
-		Sleep(10);
+        calculateCoordinate();
+		Sleep(1000);
+        clearInterrupt();
 	}    
 	return 0;
 }
