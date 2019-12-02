@@ -121,7 +121,7 @@ int main(int argc, char* argv[])
         printf("GyroX = %d\n" , GyroX);
         printf("GyroY = %d\n" , GyroY);
         printf("GyroZ = %d\n" , GyroZ);
-        Sleep(100);
+        Sleep(1000);
     }
 	return 0;
 }
