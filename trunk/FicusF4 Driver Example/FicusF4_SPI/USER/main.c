@@ -30,6 +30,7 @@ int main(int argc, char* argv[])
 	VSI_INIT_CONFIG	SPI_Init;
 	uint8_t	WriteDataTemp[512]={0};
 	uint8_t	ReadDataTemp[512]={0};
+    uint8_t spi_index = 1;
 	// Check the device number of connections
 	ret = VSI_ScanDevice(1);
 	if(ret>0){
@@ -48,14 +49,14 @@ int main(int argc, char* argv[])
 	}
 	// Device initialization
 	SPI_Init.ClockSpeed = 1125000;
-	SPI_Init.ControlMode = 1;
+	SPI_Init.ControlMode = 0;
 	SPI_Init.CPHA = 0;
 	SPI_Init.CPOL = 0;
 	SPI_Init.LSBFirst = 0;
 	SPI_Init.MasterMode = 1;
 	SPI_Init.SelPolarity = 0;
 	SPI_Init.TranBits = 8;
-	ret = VSI_InitSPI(VSI_USBSPI,0,0,&SPI_Init);
+	ret = VSI_InitSPI(VSI_USBSPI,0,spi_index,&SPI_Init);
 	if(ret != ERR_SUCCESS){
 		printf("Initialization device error :%d\n",ret);
 		return ret;
@@ -64,7 +65,7 @@ int main(int argc, char* argv[])
 	}
 	// JEDEC ID
 	WriteDataTemp[0] = 0x9F;
-	ret = VSI_WriteReadBytes(VSI_USBSPI,0,0,WriteDataTemp,1,ReadDataTemp,3);
+	ret = VSI_WriteReadBytes(VSI_USBSPI,0,spi_index,WriteDataTemp,1,ReadDataTemp,3);
 	if(ret != ERR_SUCCESS){
 		printf("Read flash ID error :%d\n",ret);
 		return ret;
@@ -73,7 +74,7 @@ int main(int argc, char* argv[])
 	}
 	// Write Enable
 	WriteDataTemp[0] = 0x06;
-	ret = VSI_WriteBytes(VSI_USBSPI,0,0,WriteDataTemp,1);
+	ret = VSI_WriteBytes(VSI_USBSPI,0,spi_index,WriteDataTemp,1);
 	if(ret != ERR_SUCCESS){
 		printf("Flash write enable error :%d\n",ret);
 		return ret;
@@ -85,7 +86,7 @@ int main(int argc, char* argv[])
 	WriteDataTemp[1] = 0x00;
 	WriteDataTemp[2] = 0x00;
 	WriteDataTemp[3] = 0x00;
-	ret = VSI_WriteBytes(VSI_USBSPI,0,0,WriteDataTemp,4);
+	ret = VSI_WriteBytes(VSI_USBSPI,0,spi_index,WriteDataTemp,4);
 	if(ret != ERR_SUCCESS){
 		printf("Sector Erase start error :%d\n",ret);
 		return ret;
@@ -95,7 +96,7 @@ int main(int argc, char* argv[])
 	// Check the operation to complete
 	do{
 		WriteDataTemp[0] = 0x05;// Read Status Register-1
-		ret = VSI_WriteReadBytes(VSI_USBSPI,0,0,WriteDataTemp,1,ReadDataTemp,1);
+		ret = VSI_WriteReadBytes(VSI_USBSPI,0,spi_index,WriteDataTemp,1,ReadDataTemp,1);
 
 	}while((ReadDataTemp[0]&0x01)&&(ret == ERR_SUCCESS));
 	if(ret != ERR_SUCCESS){
@@ -106,7 +107,7 @@ int main(int argc, char* argv[])
 	}
 	// Write Enable
 	WriteDataTemp[0] = 0x06;
-	ret = VSI_WriteBytes(VSI_USBSPI,0,0,WriteDataTemp,1);
+	ret = VSI_WriteBytes(VSI_USBSPI,0,spi_index,WriteDataTemp,1);
 	if(ret != ERR_SUCCESS){
 		printf("Flash write enable error :%d\n",ret);
 		return ret;
@@ -121,7 +122,7 @@ int main(int argc, char* argv[])
 	for(i=4;i<(256+4);i++){
 		WriteDataTemp[i] = i-4;
 	}
-	ret = VSI_WriteBytes(VSI_USBSPI,0,0,WriteDataTemp,256+4);
+	ret = VSI_WriteBytes(VSI_USBSPI,0,spi_index,WriteDataTemp,256+4);
 	if(ret != ERR_SUCCESS){
 		printf("Page program start error :%d\n",ret);
 		return ret;
@@ -131,7 +132,7 @@ int main(int argc, char* argv[])
 	// Check the operation to complete
 	do{
 		WriteDataTemp[0] = 0x05;// Read Status Register-1
-		ret = VSI_WriteReadBytes(VSI_USBSPI,0,0,WriteDataTemp,1,ReadDataTemp,1);
+		ret = VSI_WriteReadBytes(VSI_USBSPI,0,spi_index,WriteDataTemp,1,ReadDataTemp,1);
 
 	}while((ReadDataTemp[0]&0x01)&&(ret == ERR_SUCCESS));
 	if(ret != ERR_SUCCESS){
@@ -145,7 +146,7 @@ int main(int argc, char* argv[])
 	WriteDataTemp[1] = 0x00;//address
 	WriteDataTemp[2] = 0x00;
 	WriteDataTemp[3] = 0x00;
-	ret = VSI_WriteReadBytes(VSI_USBSPI,0,0,WriteDataTemp,4,ReadDataTemp,256);
+	ret = VSI_WriteReadBytes(VSI_USBSPI,0,spi_index,WriteDataTemp,4,ReadDataTemp,256);
 	if(ret != ERR_SUCCESS){
 		printf("Read Data error :%d\n",ret);
 		return ret;

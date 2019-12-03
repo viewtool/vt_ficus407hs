@@ -102,7 +102,7 @@ int main(int argc, char* argv[])
 		printf("\r\n");
     }	
 	// Initialize DAC_CH0 & ADC_CH1, each channel sampling interval is set to 1000us
-    ret = VAO_InitDAC(VAO_USBDAC, 0, VAO_DAC_CH0 | VAO_DAC_CH1 , 0);// Cycle can be set to 0 if each channel transfer a byte of data at a time.
+    ret = VAO_InitDAC(VAO_USBDAC, 0, VAO_DAC_CH0 , 0);// Cycle can be set to 0 if each channel transfer a byte of data at a time.
 	if (ret != ERR_SUCCESS)
     {
         printf("Initialize DAC error!\r\n");
@@ -110,7 +110,7 @@ int main(int argc, char* argv[])
     }else{
         printf("Initialize DAC Channel 0 and 1 success!\r\n");
     }
-	ret = VAO_Start(VAO_USBDAC, 0,VAO_DAC_CH0 | VAO_DAC_CH1,3000,256);
+	ret = VAO_Start(VAO_USBDAC, 0,VAO_DAC_CH0,3000,256);
     if (ret != ERR_SUCCESS)
     {
         printf("Start DAC data error!\r\n");
@@ -119,7 +119,7 @@ int main(int argc, char* argv[])
     {
         printf("DAC Channel 0 and 1 Start Output 3000MV\r\n");
     }
-	ret = VAO_Stop(VAO_USBDAC, 0,VAO_DAC_CH0 | VAO_DAC_CH1);
+	ret = VAO_Stop(VAO_USBDAC, 0,VAO_DAC_CH0);
     if (ret != ERR_SUCCESS)
     {
         printf("Stop DAC data error!\r\n");
@@ -138,7 +138,7 @@ int main(int argc, char* argv[])
 		}else{
             printf("DAC Channel 0 and 1 Start Output 2500MV\r\n");
         } 
-        Sleep(100);
+        Sleep(1000);
 		ret = VAO_Stop(VAO_USBDAC, 0,VAO_DAC_CH0 | VAO_DAC_CH1);
 		if (ret != ERR_SUCCESS)
 		{

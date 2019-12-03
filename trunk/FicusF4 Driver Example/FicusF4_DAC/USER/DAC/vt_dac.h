@@ -5,9 +5,6 @@
 #define __VT_DAC_H
 
 
-//void VT_DAC_Config(USB_OTG_CORE_HANDLE  *pdev, S_MSG *msg);
-//void VT_DAC_Start(USB_OTG_CORE_HANDLE  *pdev, S_MSG *msg);
-//void VT_DAC_Stop(USB_OTG_CORE_HANDLE  *pdev, S_MSG *msg);
 // Define adapter type
 #define VAO_USBDAC		(1)		//device type
 
@@ -72,9 +69,10 @@ struct __FILE
 
 FILE __stdout;       
   
-_sys_exit(int x) 
+int _sys_exit(int x) 
 { 
-	x = x; 
+	x = x;
+    return x;
 } 
 
 int fputc(int ch, FILE *f)

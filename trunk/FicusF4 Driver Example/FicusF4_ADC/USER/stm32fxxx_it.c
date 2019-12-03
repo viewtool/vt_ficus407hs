@@ -30,7 +30,6 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32fxxx_it.h"
 #include <string.h>
-extern void _DMA2_Stream0_IRQHandler(void);
 /******************************************************************************/
 /*             Cortex-M Processor Exceptions Handlers                         */
 /******************************************************************************/
@@ -137,6 +136,7 @@ extern void _I2C1_EV_IRQHandler(void);
 extern void _I2C2_EV_IRQHandler(void);
 extern void _TIM6_DAC_IRQHandler(void);
 extern void _DMA2_Stream0_IRQHandler(void);
+extern void _DMA2_Stream4_IRQHandler(void);
 extern void _TIM2_IRQHandler(void);
 extern void _TIM3_IRQHandler(void);
 extern void _CAN1_RX0_IRQHandler(void);
@@ -169,6 +169,10 @@ void TIM6_DAC_IRQHandler(void)
 void DMA2_Stream0_IRQHandler(void)
 {
 	_DMA2_Stream0_IRQHandler();
+}
+void DMA2_Stream4_IRQHandler(void)
+{
+	_DMA2_Stream4_IRQHandler();
 }
 void TIM2_IRQHandler(void)
 {

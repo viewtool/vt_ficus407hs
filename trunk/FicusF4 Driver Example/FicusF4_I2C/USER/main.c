@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
 	VII_BOARD_INFO BoardInfo;
 	uint8_t write_buffer[8]={0};
 	uint8_t	read_buffer[8]={0};
-    int8_t I2C_Index = 0;
+    int8_t I2C_Index = 1;
 	//Scan device
 	ret = VII_ScanDevice(1);
 	if(ret <= 0)

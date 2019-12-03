@@ -106,7 +106,7 @@ void  GetDataCallback(uint32_t DevIndex,uint32_t CANIndex,uint32_t Len)
 	static int data_num = 0;
 	data_num++;
 	printf("data_num = %d\n\n", data_num);
-	int DataNum = VCI_GetReceiveNum(VCI_USBCAN2, 0, 0);
+	int DataNum = VCI_GetReceiveNum(VCI_USBCAN2, 0, CANIndex);
 	VCI_CAN_OBJ	*pCAN_ReceiveData = (VCI_CAN_OBJ *)malloc(DataNum*sizeof(VCI_CAN_OBJ));
     if((DataNum > 0)&&(pCAN_ReceiveData != NULL)){
         ReadDataNum = VCI_Receive(VCI_USBCAN2, 0, CANIndex, pCAN_ReceiveData, DataNum,0);
@@ -182,7 +182,7 @@ int main(void)
     CAN_InitEx.CAN_TXFP = 1;
 	CAN_InitEx.CAN_RELAY = 0;
 	devIndex = 0; 
-	for(canIndex=0; canIndex<=1; canIndex++)
+//	for(canIndex=0; canIndex<=1; canIndex++)
 	{
     Status = VCI_InitCANEx(VCI_USBCAN2,devIndex,canIndex,&CAN_InitEx);
 #if VT_LOG
@@ -222,12 +222,12 @@ int main(void)
     CAN_FilterConfig.MASK_IDE = 0;
     CAN_FilterConfig.MASK_RTR = 0;
     CAN_FilterConfig.MASK_Std_Ext = 0;
-    Status = VCI_SetFilter(VCI_USBCAN2,0,0,&CAN_FilterConfig);
+    Status = VCI_SetFilter(VCI_USBCAN2,0,canIndex,&CAN_FilterConfig);
 
 	for(i=1; i<=13; i++)
 	{
         CAN_FilterConfig.FilterIndex = i;
-        Status = VCI_SetFilter(VCI_USBCAN2,0,0,&CAN_FilterConfig);
+        Status = VCI_SetFilter(VCI_USBCAN2,0,canIndex,&CAN_FilterConfig);
 	}
     if(Status==STATUS_ERR){
         SPRINTF(("Set filter failed!\n"));
@@ -257,7 +257,7 @@ int main(void)
 	VCI_RegisterReceiveCallback(0,GetDataCallback);
 #endif
     //Start CAN
-    Status = VCI_StartCAN(VCI_USBCAN2,0,0);
+    Status = VCI_StartCAN(VCI_USBCAN2,0,canIndex);
 
 //	Status = VCI_StartCAN(VCI_USBCAN2,0,1);
     if(Status==STATUS_ERR){
@@ -290,7 +290,7 @@ int main(void)
  //   Status = VCI_Transmit(VCI_USBCAN2,0,0,CAN_SendData,0);
 
 //	while(Status == STATUS_ERR)
-    Status = VCI_Transmit(VCI_USBCAN2,0,0,CAN_SendData,CAN_DATA_SEND_FRAME_COUNT);
+    Status = VCI_Transmit(VCI_USBCAN2,0,canIndex,CAN_SendData,CAN_DATA_SEND_FRAME_COUNT);
     if(Status==STATUS_ERR){
         SPRINTF(("Send CAN data failed!\n"));
         VCI_ResetCAN(VCI_USBCAN2,0,0);
@@ -307,7 +307,7 @@ int main(void)
 #if CAN_GET_STATUS
 
             VCI_CAN_STATUS CAN_Status;
-            Status = VCI_ReadCANStatus(VCI_USBCAN2, 0, 0, &CAN_Status);
+            Status = VCI_ReadCANStatus(VCI_USBCAN2, 0, canIndex, &CAN_Status);
             if (Status == STATUS_ERR)
             {
                 SPRINTF(("Get CAN status failed!\n"));

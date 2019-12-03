@@ -153,7 +153,18 @@ extern void _OTG_HS_IRQHandler(void);
 extern void _OTG_FS_IRQHandler(void);
 extern void _OTG_HS_EP1_IN_IRQHandler(void);
 extern void _OTG_HS_EP1_OUT_IRQHandler(void);
+extern void _DMA1_Stream5_IRQHandler(void);
+extern void _DMA1_Stream6_IRQHandler(void);
 
+
+void DMA1_Stream5_IRQHandler(void)
+{
+    _DMA1_Stream5_IRQHandler();
+}
+void DMA1_Stream6_IRQHandler(void)
+{
+    _DMA1_Stream6_IRQHandler();
+}
 void I2C1_EV_IRQHandler(void)
 {
 	_I2C1_EV_IRQHandler();
