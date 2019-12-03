@@ -23,7 +23,7 @@
 #include "HMC5883L.h"
 #endif
 
-#define SWD_Debug   0
+#define SWD_Debug   1
 
 #if SWD_Debug
 #define ITM_Port8(n)    (*((volatile unsigned char *)(0xE0000000+4*n)))
