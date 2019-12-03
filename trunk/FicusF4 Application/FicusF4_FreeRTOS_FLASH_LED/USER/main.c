@@ -201,7 +201,7 @@ void led_task(void *pvParameters)
         }else{
             printf("Set pin high LED\r\n");
         }        
-        Sleep(1000);
+        vTaskDelay(1000);
         // Reset GPIO_7 and GPIO_8 
         ret = VGI_ResetPins(VGI_USBGPIO, 0, VGI_GPIO_PORTA | VGI_GPIO_PIN6 | VGI_GPIO_PIN7);
         if (ret != ERR_SUCCESS)
