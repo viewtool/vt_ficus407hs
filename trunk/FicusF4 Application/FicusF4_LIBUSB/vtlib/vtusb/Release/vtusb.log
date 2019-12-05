@@ -1,0 +1,6 @@
+﻿  testlibusb.c
+    正在创建库 F:\vt_libusb\libusb-1.0.22\msvc\Release\vtusb.lib 和对象 F:\vt_libusb\libusb-1.0.22\msvc\Release\vtusb.exp
+  正在生成代码
+  All 3 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  vtusb.vcxproj -> F:\vt_libusb\libusb-1.0.22\msvc\Release\vtusb.dll
