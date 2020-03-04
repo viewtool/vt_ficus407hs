@@ -29,10 +29,7 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32fxxx_it.h"
-#include "FreeRTOS.h"
-#include "task.h"
 #include <string.h>
-extern void _DMA2_Stream0_IRQHandler(void);
 /******************************************************************************/
 /*             Cortex-M Processor Exceptions Handlers                         */
 /******************************************************************************/
@@ -103,9 +100,9 @@ void UsageFault_Handler(void)
   * @param  None
   * @retval None
   */
-//void SVC_Handler(void)
-//{
-//}
+void SVC_Handler(void)
+{
+}
 
 /**
   * @brief  This function handles Debug Monitor exception.
@@ -121,9 +118,9 @@ void DebugMon_Handler(void)
   * @param  None
   * @retval None
   */
-//void PendSV_Handler(void)
-//{
-//}
+void PendSV_Handler(void)
+{
+}
 
 /**
   * @brief  This function handles SysTick Handler.
@@ -132,124 +129,109 @@ void DebugMon_Handler(void)
   */
 void SysTick_Handler(void)
 {
-	/* The SysTick runs at the lowest interrupt priority, so when this interrupt
-	executes all interrupts must be unmasked.  There is therefore no need to
-	save and then restore the interrupt mask value as its value is already
-	known - therefore the slightly faster vPortRaiseBASEPRI() function is used
-	in place of portSET_INTERRUPT_MASK_FROM_ISR(). */
-	vPortRaiseBASEPRI();
-	{
-		/* Increment the RTOS tick. */
-		if( xTaskIncrementTick() != pdFALSE )
-		{
-			/* A context switch is required.  Context switching is performed in
-			the PendSV interrupt.  Pend the PendSV interrupt. */
-			portNVIC_INT_CTRL_REG = portNVIC_PENDSVSET_BIT;
-		}
-	}
-	vPortClearBASEPRIFromISR();    
+   
 }
 
-extern void _I2C1_EV_IRQHandler(void);
-extern void _I2C2_EV_IRQHandler(void);
-extern void _TIM6_DAC_IRQHandler(void);
-extern void _DMA2_Stream0_IRQHandler(void);
-extern void _TIM2_IRQHandler(void);
-extern void _TIM3_IRQHandler(void);
-extern void _CAN1_RX0_IRQHandler(void);
-extern void _CAN1_RX1_IRQHandler(void);
-extern void _CAN2_RX0_IRQHandler(void);
-extern void _CAN2_RX1_IRQHandler(void);
-extern void _TIM4_IRQHandler(void);
-extern void _TIM5_IRQHandler(void);
-extern void _DMA2_Stream3_IRQHandler(void);
-extern void _USART1_IRQHandler(void);
-extern void _USART2_IRQHandler(void);
-extern void _USART3_IRQHandler(void);
-extern void _OTG_HS_IRQHandler(void);
-extern void _OTG_FS_IRQHandler(void);
-extern void _OTG_HS_EP1_IN_IRQHandler(void);
-extern void _OTG_HS_EP1_OUT_IRQHandler(void);
+extern void I2C1_EV_IRQ_Handler(void);
+extern void I2C2_EV_IRQ_Handler(void);
+extern void TIM6_DAC_IRQ_Handler(void);
+extern void DMA2_Stream0_IRQ_Handler(void);
+extern void TIM2_IRQ_Handler(void);
+extern void TIM3_IRQ_Handler(void);
+extern void CAN1_RX0_IRQ_Handler(void);
+extern void CAN1_RX1_IRQ_Handler(void);
+extern void CAN2_RX0_IRQ_Handler(void);
+extern void CAN2_RX1_IRQ_Handler(void);
+extern void TIM4_IRQ_Handler(void);
+extern void TIM5_IRQ_Handler(void);
+extern void DMA2_Stream3_IRQ_Handler(void);
+extern void USART1_IRQ_Handler(void);
+extern void USART2_IRQ_Handler(void);
+extern void USART3_IRQ_Handler(void);
+extern void OTG_HS_IRQ_Handler(void);
+extern void OTG_FS_IRQ_Handler(void);
+extern void OTG_HS_EP1_IN_IRQ_Handler(void);
+extern void OTG_HS_EP1_OUT_IRQ_Handler(void);
 
 void I2C1_EV_IRQHandler(void)
 {
-	_I2C1_EV_IRQHandler();
+	I2C1_EV_IRQ_Handler();
 }
 void I2C2_EV_IRQHandler(void)
 {
-	_I2C2_EV_IRQHandler();
+	I2C2_EV_IRQ_Handler();
 }
 void TIM6_DAC_IRQHandler(void)
 {
-	_TIM6_DAC_IRQHandler();
+	TIM6_DAC_IRQ_Handler();
 }
 void DMA2_Stream0_IRQHandler(void)
 {
-	_DMA2_Stream0_IRQHandler();
+	DMA2_Stream0_IRQ_Handler();
 }
 void TIM2_IRQHandler(void)
 {
-	_TIM2_IRQHandler();
+	TIM2_IRQ_Handler();
 }
 void TIM3_IRQHandler(void)
 {
-	_TIM3_IRQHandler();
+	TIM3_IRQ_Handler();
 }
 void CAN1_RX0_IRQHandler(void)
 {
-	_CAN1_RX0_IRQHandler();
+	CAN1_RX0_IRQ_Handler();
 }
 void CAN1_RX1_IRQHandler(void)
 {
-	_CAN1_RX1_IRQHandler();
+	CAN1_RX1_IRQ_Handler();
 }
 void CAN2_RX0_IRQHandler(void)
 {
-	_CAN2_RX0_IRQHandler();
+	CAN2_RX0_IRQ_Handler();
 }
 void CAN2_RX1_IRQHandler(void)
 {
-	_CAN2_RX1_IRQHandler();
+	CAN2_RX1_IRQ_Handler();
 }
 void TIM4_IRQHandler(void)
 {
-	_TIM4_IRQHandler();
+	TIM4_IRQ_Handler();
 }
 void TIM5_IRQHandler(void)
 {
-	_TIM5_IRQHandler();
+	TIM5_IRQ_Handler();
 }
 void DMA2_Stream3_IRQHandler(void)
 {
-	_DMA2_Stream3_IRQHandler();
+	DMA2_Stream3_IRQ_Handler();
 }
 void USART1_IRQHandler(void)
 {
-	_USART1_IRQHandler();
+	USART1_IRQ_Handler();
 }
 void USART2_IRQHandler(void)
 {
-	_USART2_IRQHandler();
+	USART2_IRQ_Handler();
 }
 void USART3_IRQHandler(void)
 {
-	_USART3_IRQHandler();
+	USART3_IRQ_Handler();
 }
 void OTG_HS_IRQHandler(void)
 {
-	_OTG_HS_IRQHandler();
+	OTG_HS_IRQ_Handler();
 }
 void OTG_FS_IRQHandler(void)
 {
-	_OTG_FS_IRQHandler();
+	OTG_FS_IRQ_Handler();
 }
 void OTG_HS_EP1_IN_IRQHandler(void)
 {
-	_OTG_HS_EP1_IN_IRQHandler();
+	OTG_HS_EP1_IN_IRQ_Handler();
 }
 void OTG_HS_EP1_OUT_IRQHandler(void)
 {
-	_OTG_HS_EP1_OUT_IRQHandler();
+	OTG_HS_EP1_OUT_IRQ_Handler();
 }
 
 
