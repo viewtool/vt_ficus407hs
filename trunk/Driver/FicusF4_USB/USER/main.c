@@ -43,7 +43,7 @@ int main(int argc, char* argv[])
         printf("Open device error!\r\n");
         return ret;
     }
-    ret = VUI_InitUsb(VUI_USB,VT_USB_HS);
+    ret = VUI_InitUSB(VUI_USB,VT_USB_HS);
     if (ret != ERR_SUCCESS)
     {
         printf("Initialize device error!\r\n");

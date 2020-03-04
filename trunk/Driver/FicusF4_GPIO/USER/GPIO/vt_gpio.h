@@ -114,6 +114,14 @@ extern int32_t	 VGI_SetInput(int32_t DevType,int32_t DevIndex,uint32_t PinMask);
 extern int32_t	 VGI_SetOutput(int32_t DevType,int32_t DevIndex,uint32_t PinMask);
 extern int32_t	 VGI_SetOpenDrain(int32_t DevType,int32_t DevIndex,uint32_t PinMask);
 
+extern int32_t  VGI_InitGPIOEx(int32_t DevType, int32_t DevIndex, uint32_t PinMask, uint32_t PinMode);
+extern int32_t  VGI_WriteDatasEx(int32_t DevType,int32_t DevIndex, uint32_t PinMask,uint16_t Data);
+extern int32_t  VGI_ReadDatasEx(int32_t DevType,int32_t DevIndex,uint32_t PinMask,uint16_t *pData);
+extern int32_t	 VGI_SetPinsEx(int32_t DevType,int32_t DevIndex,uint32_t PinMask);
+extern int32_t	 VGI_ResetPinsEx(int32_t DevType,int32_t DevIndex,uint32_t PinMask);
+extern int32_t	 VGI_SetInputEx(int32_t DevType,int32_t DevIndex,uint32_t PinMask);
+extern int32_t	 VGI_SetOutputEx(int32_t DevType,int32_t DevIndex,uint32_t PinMask);
+extern int32_t	 VGI_SetOpenDrainEx(int32_t DevType,int32_t DevIndex,uint32_t PinMask);
 #endif
 
 

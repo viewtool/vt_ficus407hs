@@ -32,7 +32,7 @@
 extern int32_t VUI_ScanDevice(uint8_t NeedInit);
 extern int32_t VUI_OpenDevice(int32_t DeviceType,int32_t DeviceIndex,int32_t Reserved);
 extern int32_t  VUI_CloseDevice(int32_t DeviceType,int32_t DeviceIndex);
-extern int32_t  VUI_InitUsb(int32_t DeviceType, int32_t UsbMode);
+extern int32_t  VUI_InitUSB(int32_t DeviceType, int32_t UsbMode);
 extern int32_t  VUI_WriteByte(int32_t DeviceType, int32_t DeviceIndex,uint8_t *p_WriteData,uint32_t Lenth,uint16_t waittime);
 extern int32_t  VUI_ReadByte(int32_t DeviceType, int32_t DeviceIndex,uint8_t *p_ReadData,uint32_t Lenth,uint16_t waittime);
 
