@@ -403,9 +403,9 @@
           <GroupName>VTLIB</GroupName>
           <Files>
             <File>
-              <FileName>ficus_f4_dll.lib</FileName>
+              <FileName>FicusF4.lib</FileName>
               <FileType>4</FileType>
-              <FilePath>..\VTLIB\ficus_f4_dll.lib</FilePath>
+              <FilePath>..\VTLIB\FicusF4.lib</FilePath>
             </File>
           </Files>
         </Group>

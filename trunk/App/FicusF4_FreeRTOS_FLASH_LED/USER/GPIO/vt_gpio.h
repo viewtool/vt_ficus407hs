@@ -31,7 +31,6 @@
 #define VGI_GPIO_PORTC      (1<<18)
 #define VGI_GPIO_PORTD      (1<<19)
 #define VGI_GPIO_PORTE      (1<<20)
-#define VGI_GPIO_PORT_ALL   (0xFFFF<<16)
 
 //General Error Code
 #define	ERR_SUCCESS					(0)		// no Error
@@ -54,6 +53,53 @@
 #define ERR_CMD_FAILED				(-17)	// failed to execute command
 #define	ERR_BUFFER_CREATE			(-18)	// out of memory
 
+#define SWD_Debug   1
+
+#if SWD_Debug
+#define ITM_Port8(n)    (*((volatile unsigned char *)(0xE0000000+4*n)))
+#define ITM_Port16(n)   (*((volatile unsigned short*)(0xE0000000+4*n)))
+#define ITM_Port32(n)   (*((volatile unsigned long *)(0xE0000000+4*n)))
+
+#define DEMCR           (*((volatile unsigned long *)(0xE000EDFC)))
+#define TRCENA          0x01000000
+
+struct __FILE { int handle; /* Add whatever needed */ };
+FILE __stdout;
+FILE __stdin;
+
+int fputc(int ch, FILE *f) {
+  if (DEMCR & TRCENA) {
+     while (ITM_Port32(0) == 0);
+    ITM_Port8(0) = ch;
+  }
+  return(ch);
+}
+#else
+/*
+    *** USE Print()Function Need Init UART1 or UART2 or UART3 Driver
+*/
+#pragma import(__use_no_semihosting)             
+              
+struct __FILE 
+{ 
+	int handle; 
+}; 
+
+FILE __stdout;       
+  
+_sys_exit(int x) 
+{ 
+	x = x; 
+} 
+
+int fputc(int ch, FILE *f)
+{ 	
+	while((USART1->SR&0X40)==0);
+	USART1->DR = (u8) ch;      
+	return ch;
+}
+#endif
+extern int32_t Sleep(uint32_t nms);
 extern int32_t  VGI_ScanDevice(uint8_t NeedInit);
 extern int32_t  VGI_OpenDevice(int32_t DevType,int32_t DevIndex,int32_t Reserved);
 extern int32_t  VGI_CloseDevice(int32_t DevType,int32_t DevIndex);
@@ -65,6 +111,16 @@ extern int32_t	 VGI_ResetPins(int32_t DevType,int32_t DevIndex,uint32_t PinMask)
 extern int32_t	 VGI_SetInput(int32_t DevType,int32_t DevIndex,uint32_t PinMask);
 extern int32_t	 VGI_SetOutput(int32_t DevType,int32_t DevIndex,uint32_t PinMask);
 extern int32_t	 VGI_SetOpenDrain(int32_t DevType,int32_t DevIndex,uint32_t PinMask);
+
+extern int32_t  VGI_InitGPIOEx(int32_t DevType, int32_t DevIndex, uint32_t PinMask, uint32_t PinMode);
+extern int32_t  VGI_WriteDatasEx(int32_t DevType,int32_t DevIndex, uint32_t PinMask,uint16_t Data);
+extern int32_t  VGI_ReadDatasEx(int32_t DevType,int32_t DevIndex,uint32_t PinMask,uint16_t *pData);
+extern int32_t	 VGI_SetPinsEx(int32_t DevType,int32_t DevIndex,uint32_t PinMask);
+extern int32_t	 VGI_ResetPinsEx(int32_t DevType,int32_t DevIndex,uint32_t PinMask);
+extern int32_t	 VGI_SetInputEx(int32_t DevType,int32_t DevIndex,uint32_t PinMask);
+extern int32_t	 VGI_SetOutputEx(int32_t DevType,int32_t DevIndex,uint32_t PinMask);
+extern int32_t	 VGI_SetOpenDrainEx(int32_t DevType,int32_t DevIndex,uint32_t PinMask);
+
 
 #endif
 

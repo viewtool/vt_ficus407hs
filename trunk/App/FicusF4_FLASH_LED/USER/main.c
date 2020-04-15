@@ -40,13 +40,13 @@ int main(int argc, char* argv[])
         printf("Open device error!\r\n");
         return ret;
     } 
-    ret = VGI_SetOutput(VGI_USBGPIO, 0, VGI_GPIO_PORTA| VGI_GPIO_PIN6 | VGI_GPIO_PIN7);
+    ret = VGI_SetOutputEx(VGI_USBGPIO, 0, VGI_GPIO_PORTA| VGI_GPIO_PIN6 | VGI_GPIO_PIN7);
     if (ret != ERR_SUCCESS)
     {
         printf("Set pin output error!\r\n");
         return ret;
     }
-    ret = VGI_SetOutput(VGI_USBGPIO, 0, VGI_GPIO_PORTB | VGI_GPIO_PIN12 | VGI_GPIO_PIN13);
+    ret = VGI_SetOutputEx(VGI_USBGPIO, 0, VGI_GPIO_PORTB | VGI_GPIO_PIN12 | VGI_GPIO_PIN13);
     if (ret != ERR_SUCCESS)
     {
         printf("Set pin output error!\r\n");
@@ -55,7 +55,7 @@ int main(int argc, char* argv[])
     while(1)
     {
         // Set GPIO_7 and GPIO_8 
-        ret = VGI_SetPins(VGI_USBGPIO, 0, VGI_GPIO_PORTA | VGI_GPIO_PIN6 | VGI_GPIO_PIN7);
+        ret = VGI_SetPinsEx(VGI_USBGPIO, 0, VGI_GPIO_PORTA | VGI_GPIO_PIN6 | VGI_GPIO_PIN7);
         if (ret != ERR_SUCCESS)
         {
             printf("Set pin high error!\r\n");
@@ -63,7 +63,7 @@ int main(int argc, char* argv[])
         }else{
             printf("Set pin high LED\r\n");
         }
-        ret = VGI_SetPins(VGI_USBGPIO, 0, VGI_GPIO_PORTB | VGI_GPIO_PIN12 | VGI_GPIO_PIN13);
+        ret = VGI_SetPinsEx(VGI_USBGPIO, 0, VGI_GPIO_PORTB | VGI_GPIO_PIN12 | VGI_GPIO_PIN13);
         if (ret != ERR_SUCCESS)
         {
             printf("Set pin high error!\r\n");
@@ -73,7 +73,7 @@ int main(int argc, char* argv[])
         }        
         Sleep(1000);
         // Reset GPIO_7 and GPIO_8 
-        ret = VGI_ResetPins(VGI_USBGPIO, 0, VGI_GPIO_PORTA | VGI_GPIO_PIN6 | VGI_GPIO_PIN7);
+        ret = VGI_ResetPinsEx(VGI_USBGPIO, 0, VGI_GPIO_PORTA | VGI_GPIO_PIN6 | VGI_GPIO_PIN7);
         if (ret != ERR_SUCCESS)
         {
             printf("Set pin low error!\r\n");
@@ -81,7 +81,7 @@ int main(int argc, char* argv[])
         }else{
             printf("Set pin low LED\r\n");
         }
-        ret = VGI_ResetPins(VGI_USBGPIO, 0, VGI_GPIO_PORTB | VGI_GPIO_PIN12 | VGI_GPIO_PIN13);
+        ret = VGI_ResetPinsEx(VGI_USBGPIO, 0, VGI_GPIO_PORTB | VGI_GPIO_PIN12 | VGI_GPIO_PIN13);
         if (ret != ERR_SUCCESS)
         {
             printf("Set pin low error!\r\n");

@@ -325,7 +325,7 @@
             <wLevel>0</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
-            <uC99>1</uC99>
+            <uC99>0</uC99>
             <uGnu>0</uGnu>
             <useXO>0</useXO>
             <v6Lang>1</v6Lang>
@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F40_41xxx</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CMSIS\Device\ST\STM32F4xx\Include;..\CMSIS\Include;..\FreeRTOS\include;..\FreeRTOS\portable\RVDS\ARM_CM4F;..\USER;..\USER\GPIO;..\USER\ADC;..\USER\CAN;..\USER\COUNTER;..\USER\DAC;..\USER\I2C;..\USER\PWM;..\USER\SPI;..\USER\USART;..\USER\USB</IncludePath>
+              <IncludePath>..\CMSIS\Device\ST\STM32F4xx\Include;..\CMSIS\Include;..\USER\GPIO;..\USER</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -393,20 +393,15 @@
               <FileType>1</FileType>
               <FilePath>..\USER\stm32fxxx_it.c</FilePath>
             </File>
-            <File>
-              <FileName>retarget.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\USER\retarget.c</FilePath>
-            </File>
           </Files>
         </Group>
         <Group>
           <GroupName>VTLIB</GroupName>
           <Files>
             <File>
-              <FileName>ficus_f4_dll.lib</FileName>
+              <FileName>FicusF4.lib</FileName>
               <FileType>4</FileType>
-              <FilePath>..\VTLIB\ficus_f4_dll.lib</FilePath>
+              <FilePath>..\VTLIB\FicusF4.lib</FilePath>
             </File>
           </Files>
         </Group>
@@ -422,56 +417,6 @@
               <FileName>system_stm32f4xx.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\CMSIS\Device\ST\STM32F4xx\Source\Templates\arm\system_stm32f4xx.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>FreeRTOS_CORE</GroupName>
-          <Files>
-            <File>
-              <FileName>croutine.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\FreeRTOS\croutine.c</FilePath>
-            </File>
-            <File>
-              <FileName>event_groups.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\FreeRTOS\event_groups.c</FilePath>
-            </File>
-            <File>
-              <FileName>list.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\FreeRTOS\list.c</FilePath>
-            </File>
-            <File>
-              <FileName>queue.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\FreeRTOS\queue.c</FilePath>
-            </File>
-            <File>
-              <FileName>tasks.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\FreeRTOS\tasks.c</FilePath>
-            </File>
-            <File>
-              <FileName>timers.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\FreeRTOS\timers.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>FreeRTOS_PORTABLE</GroupName>
-          <Files>
-            <File>
-              <FileName>port.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\FreeRTOS\portable\RVDS\ARM_CM4F\port.c</FilePath>
-            </File>
-            <File>
-              <FileName>heap_4.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\FreeRTOS\portable\MemMang\heap_4.c</FilePath>
             </File>
           </Files>
         </Group>

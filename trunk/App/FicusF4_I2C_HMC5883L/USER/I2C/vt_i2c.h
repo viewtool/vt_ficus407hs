@@ -107,9 +107,6 @@ typedef struct _VII_TIME_CONFIG
     uint16_t tStop;
 }VII_TIME_CONFIG,*PVII_TIME_CONFIG;
 
-//extern I2C_INIT_INFO I2C_Info[];	///<I2C控制器相关信息
-//extern IICTime 		swi2c_time;
-
 extern int32_t VII_ScanDevice(uint8_t NeedInit);
 extern int32_t VII_OpenDevice(int32_t DevType,int32_t DevIndex,int32_t Reserved);
 extern int32_t VII_CloseDevice(int32_t DevType,int32_t DevIndex);
