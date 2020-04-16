@@ -20,6 +20,7 @@
 #else
 #include "stm32f4xx_conf.h"
 #include "vt_i2c.h"
+#include "func_map.h"
 #endif
 
 #define COLOR_SENSOR_ADDR			0x49

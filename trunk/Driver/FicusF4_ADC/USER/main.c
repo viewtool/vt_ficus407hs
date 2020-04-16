@@ -21,6 +21,7 @@
 #else
 #include "stm32f4xx_conf.h"
 #include "vt_adc.h"
+#include "func_map.h"
 #endif
 
 int main(int argc, char* argv[])

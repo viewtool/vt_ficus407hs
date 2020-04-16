@@ -22,6 +22,7 @@
 #include "stm32f4xx_conf.h"
 #include "vt_gpio.h"
 #include "vt_os.h"
+#include "func_map.h"
 #endif
 
 
@@ -53,31 +54,78 @@ int main(void)
 }
 void start_task(void *pvParameters)
 {
+    int ret = 0;
     VOS_Enter_Critical(); 
     VOS_Create_Task(led_task1,"led1",LED_STK_SIZE1,NULL,LED_TASK_PRIO1,&LEDTask_Handler1);
     VOS_Create_Task(led_task2,"led2",LED_STK_SIZE2,NULL,LED_TASK_PRIO2,&LEDTask_Handler2);
+    ret = VGI_SetOutputEx(VGI_USBGPIO, 0, VGI_GPIO_PORTA| VGI_GPIO_PIN6 | VGI_GPIO_PIN7);
+    if (ret != ERR_SUCCESS)
+    {
+        printf("Set pin output error!\r\n");
+    }
+    ret = VGI_SetOutputEx(VGI_USBGPIO, 0, VGI_GPIO_PORTB | VGI_GPIO_PIN12 | VGI_GPIO_PIN13);
+    if (ret != ERR_SUCCESS)
+    {
+        printf("Set pin output error!\r\n");
+    }
     VOS_Delete_Task(StartTask_Handler);
     VOS_Exit_Critical();   
 }
 void led_task1(void *pvParameters)
 {
-    int i = 0;
+    int ret = 0;
     while(1)
     {
-        i++;
         VOS_Enter_Critical();
-        if(i == 5)
+        ret = VGI_SetPinsEx(VGI_USBGPIO, 0, VGI_GPIO_PORTA | VGI_GPIO_PIN6 | VGI_GPIO_PIN7);
+        if (ret != ERR_SUCCESS)
         {
-            VOS_Delete_Task(LEDTask_Handler2);
+            printf("Set pin high error!\r\n");
+            VOS_Delete_Task(LEDTask_Handler1);
+        }else{
+            printf("Set pin high LED\r\n");
         }
         VOS_Exit_Critical(); 
-        Sleep(100);
+        Sleep(1000);
+        VOS_Enter_Critical();
+        ret = VGI_ResetPinsEx(VGI_USBGPIO, 0, VGI_GPIO_PORTA | VGI_GPIO_PIN6 | VGI_GPIO_PIN7);
+        if (ret != ERR_SUCCESS)
+        {
+            printf("Set pin low error!\r\n");
+            VOS_Delete_Task(LEDTask_Handler1);
+        }else{
+            printf("Set pin low LED\r\n");
+        }
+        VOS_Exit_Critical(); 
+        Sleep(1000);
     }
 }
 void led_task2(void *pvParameters)
 {
+    int ret = 0;
     while(1)
     {
-        Sleep(100);         
+        VOS_Enter_Critical();
+        ret = VGI_SetPinsEx(VGI_USBGPIO, 0, VGI_GPIO_PORTB | VGI_GPIO_PIN12 | VGI_GPIO_PIN13);
+        if (ret != ERR_SUCCESS)
+        {
+            printf("Set pin high error!\r\n");
+            VOS_Delete_Task(LEDTask_Handler2);
+        }else{
+            printf("Set pin high LED\r\n");
+        }     
+        VOS_Exit_Critical(); 
+        Sleep(1000);
+        VOS_Enter_Critical();
+        ret = VGI_ResetPinsEx(VGI_USBGPIO, 0, VGI_GPIO_PORTB | VGI_GPIO_PIN12 | VGI_GPIO_PIN13);
+        if (ret != ERR_SUCCESS)
+        {
+            printf("Set pin low error!\r\n");
+             VOS_Delete_Task(LEDTask_Handler2);
+        }else{
+            printf("Set pin low LED\r\n");
+        }
+        VOS_Exit_Critical(); 
+        Sleep(1000);
     }
 }

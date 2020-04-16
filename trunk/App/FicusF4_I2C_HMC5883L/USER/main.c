@@ -21,6 +21,7 @@
 #include "stm32f4xx_conf.h"
 #include "vt_i2c.h"
 #include "HMC5883L.h"
+#include "func_map.h"
 #endif
 
 #define SWD_Debug   1

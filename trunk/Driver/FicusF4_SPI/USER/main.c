@@ -21,6 +21,7 @@
 #include <stdio.h>
 #include "stm32f4xx_conf.h"
 #include "vt_spi.h"
+#include "func_map.h"
 #endif
 
 

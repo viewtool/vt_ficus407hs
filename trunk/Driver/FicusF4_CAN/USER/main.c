@@ -27,6 +27,7 @@
 #include <stdlib.h>
 #include "stm32f4xx_conf.h"
 #include "vt_can.h"
+#include "func_map.h"
 #endif
 
 #define VT_LOG    				1

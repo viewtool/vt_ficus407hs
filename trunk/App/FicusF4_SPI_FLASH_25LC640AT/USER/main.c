@@ -23,6 +23,7 @@
 #include <stdlib.h>
 #include "stm32f4xx_conf.h"
 #include "vt_spi.h"
+#include "func_map.h"
 #endif
 #define W_MAX 1000
 #define R_MAX 1000
