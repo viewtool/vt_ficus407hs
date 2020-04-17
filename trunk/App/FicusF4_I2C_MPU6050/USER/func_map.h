@@ -242,7 +242,7 @@
 #define J44_GPIO  	  (VGI_GPIO_PORTA|VGI_GPIO_PIN0)
 
 
-#define J18_P2_P4_I2C_STL_CH0      (0)
+#define J28_P2_P4_I2C_STL_CH0      (0)
 #define J50_P6_P8_I2C_STL_CH1      (1)
 #define J50_P10_P12_I2C_STL_CH2    (2)
 #define J50_P14_P16_I2C_STL_CH3    (3)
