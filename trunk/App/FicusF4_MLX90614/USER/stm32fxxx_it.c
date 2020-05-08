@@ -43,6 +43,7 @@ extern void CAN2_RX1_IRQ_Handler(void);
 extern void TIM4_IRQ_Handler(void);
 extern void TIM5_IRQ_Handler(void);
 extern void DMA2_Stream3_IRQ_Handler(void);
+extern void DMA2_Stream4_IRQ_Handler(void);
 extern void USART1_IRQ_Handler(void);
 extern void USART2_IRQ_Handler(void);
 extern void USART3_IRQ_Handler(void);
@@ -210,6 +211,10 @@ void TIM5_IRQHandler(void)
 void DMA2_Stream3_IRQHandler(void)
 {
 	DMA2_Stream3_IRQ_Handler();
+}
+void DMA2_Stream4_IRQHandler(void)
+{
+	DMA2_Stream4_IRQ_Handler();
 }
 void USART1_IRQHandler(void)
 {

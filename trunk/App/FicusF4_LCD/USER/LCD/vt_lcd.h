@@ -5,6 +5,8 @@ typedef struct _LCD_INIT_CONFIG{
 	uint16_t id;				
 	uint8_t  dir;
     uint8_t  touch_type;
+    uint32_t numbyte;
+    uint16_t block_size;
 }LCD_INIT_CONFIG,*PLCD_INIT_CONFIG;
 
 /* Private functions ---------------------------------------------------------*/

@@ -30,6 +30,31 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32fxxx_it.h"
 #include <string.h>
+extern void I2C1_EV_IRQ_Handler(void);
+extern void I2C2_EV_IRQ_Handler(void);
+extern void TIM6_DAC_IRQ_Handler(void);
+extern void DMA2_Stream0_IRQ_Handler(void);
+extern void TIM2_IRQ_Handler(void);
+extern void TIM3_IRQ_Handler(void);
+extern void CAN1_RX0_IRQ_Handler(void);
+extern void CAN1_RX1_IRQ_Handler(void);
+extern void CAN2_RX0_IRQ_Handler(void);
+extern void CAN2_RX1_IRQ_Handler(void);
+extern void TIM4_IRQ_Handler(void);
+extern void TIM5_IRQ_Handler(void);
+extern void DMA2_Stream3_IRQ_Handler(void);
+extern void DMA2_Stream4_IRQ_Handler(void);
+extern void USART1_IRQ_Handler(void);
+extern void USART2_IRQ_Handler(void);
+extern void USART3_IRQ_Handler(void);
+extern void OTG_HS_IRQ_Handler(void);
+extern void OTG_FS_IRQ_Handler(void);
+extern void OTG_HS_EP1_IN_IRQ_Handler(void);
+extern void OTG_HS_EP1_OUT_IRQ_Handler(void);
+extern void OS_SVC_Handler(void);
+extern void OS_PendSV_Handler(void);
+extern void OS_SysTick_Handler(void);
+
 /******************************************************************************/
 /*             Cortex-M Processor Exceptions Handlers                         */
 /******************************************************************************/
@@ -102,6 +127,7 @@ void UsageFault_Handler(void)
   */
 void SVC_Handler(void)
 {
+    OS_SVC_Handler();
 }
 
 /**
@@ -111,6 +137,7 @@ void SVC_Handler(void)
   */
 void DebugMon_Handler(void)
 {
+    
 }
 
 /**
@@ -120,6 +147,7 @@ void DebugMon_Handler(void)
   */
 void PendSV_Handler(void)
 {
+     OS_PendSV_Handler();
 }
 
 /**
@@ -129,29 +157,8 @@ void PendSV_Handler(void)
   */
 void SysTick_Handler(void)
 {
-   
+   OS_SysTick_Handler();
 }
-
-extern void I2C1_EV_IRQ_Handler(void);
-extern void I2C2_EV_IRQ_Handler(void);
-extern void TIM6_DAC_IRQ_Handler(void);
-extern void DMA2_Stream0_IRQ_Handler(void);
-extern void TIM2_IRQ_Handler(void);
-extern void TIM3_IRQ_Handler(void);
-extern void CAN1_RX0_IRQ_Handler(void);
-extern void CAN1_RX1_IRQ_Handler(void);
-extern void CAN2_RX0_IRQ_Handler(void);
-extern void CAN2_RX1_IRQ_Handler(void);
-extern void TIM4_IRQ_Handler(void);
-extern void TIM5_IRQ_Handler(void);
-extern void DMA2_Stream3_IRQ_Handler(void);
-extern void USART1_IRQ_Handler(void);
-extern void USART2_IRQ_Handler(void);
-extern void USART3_IRQ_Handler(void);
-extern void OTG_HS_IRQ_Handler(void);
-extern void OTG_FS_IRQ_Handler(void);
-extern void OTG_HS_EP1_IN_IRQ_Handler(void);
-extern void OTG_HS_EP1_OUT_IRQ_Handler(void);
 
 void I2C1_EV_IRQHandler(void)
 {
@@ -204,6 +211,10 @@ void TIM5_IRQHandler(void)
 void DMA2_Stream3_IRQHandler(void)
 {
 	DMA2_Stream3_IRQ_Handler();
+}
+void DMA2_Stream4_IRQHandler(void)
+{
+	DMA2_Stream4_IRQ_Handler();
 }
 void USART1_IRQHandler(void)
 {
