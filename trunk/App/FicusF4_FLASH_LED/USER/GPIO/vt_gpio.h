@@ -26,11 +26,11 @@
 #define	VGI_GPIO_PIN15		(1<<15)	//GPIO_15
 #define	VGI_GPIO_PIN_ALL	(0xFFFF)//ALL PIN
 
-#define VGI_GPIO_PORTA      (1<<16)
-#define VGI_GPIO_PORTB      (1<<17)
-#define VGI_GPIO_PORTC      (1<<18)
-#define VGI_GPIO_PORTD      (1<<19)
-#define VGI_GPIO_PORTE      (1<<20)
+#define VGI_GPIO_PORTA      (0<<16)
+#define VGI_GPIO_PORTB      (1<<16)
+#define VGI_GPIO_PORTC      (2<<16)
+#define VGI_GPIO_PORTD      (3<<16)
+#define VGI_GPIO_PORTE      (4<<17)
 
 //General Error Code
 #define	ERR_SUCCESS					(0)		// no Error
@@ -99,7 +99,8 @@ int fputc(int ch, FILE *f)
 	return ch;
 }
 #endif
-extern int32_t Sleep(uint32_t nms);
+extern int32_t vt_delay_us(uint32_t us);
+extern int32_t vt_delay_ms(uint32_t ms);
 extern int32_t  VGI_ScanDevice(uint8_t NeedInit);
 extern int32_t  VGI_OpenDevice(int32_t DevType,int32_t DevIndex,int32_t Reserved);
 extern int32_t  VGI_CloseDevice(int32_t DevType,int32_t DevIndex);
