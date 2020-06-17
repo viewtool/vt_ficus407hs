@@ -70,6 +70,7 @@ int main(int argc, char* argv[])
         printf("DAC Channel 0 Stop Output");
         printf("\r\n");
     }	
+    while(1);
     // Initialize ADC_CH1
     ret = VAO_InitDAC(VAO_USBDAC, 0, VAO_DAC_CH1 , 0);// Cycle can be set to 0 if each channel transfer a byte of data at a time.
     if (ret != ERR_SUCCESS)

@@ -301,7 +301,7 @@
               <OCR_RVCT9>
                 <Type>0</Type>
                 <StartAddress>0x20005000</StartAddress>
-                <Size>0x15000</Size>
+                <Size>0x1b000</Size>
               </OCR_RVCT9>
               <OCR_RVCT10>
                 <Type>0</Type>
@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F40_41xxx</Define>
               <Undefine></Undefine>
-              <IncludePath>..\CMSIS\Device\ST\STM32F4xx\Include;..\CMSIS\Include;..\USER\GPIO;..\USER</IncludePath>
+              <IncludePath>..\CMSIS\Device\ST\STM32F4xx\Include;..\CMSIS\Include;..\USER\GPIO;..\USER;..\USER\OS</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>

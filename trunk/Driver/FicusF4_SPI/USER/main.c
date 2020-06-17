@@ -28,7 +28,7 @@
 int main(int argc, char* argv[])
 {
 	int ret,i;
-	VSI_INIT_CONFIG	SPI_Init;
+	VSI_INIT_CONFIGEX	SPI_Init;
 	uint8_t	WriteDataTemp[512]={0};
 	uint8_t	ReadDataTemp[512]={0};
     uint8_t spi_index = 1;
@@ -50,14 +50,15 @@ int main(int argc, char* argv[])
 	}
 	// Device initialization
 	SPI_Init.ClockSpeed = 1125000;
-	SPI_Init.ControlMode = 0;
+	SPI_Init.ControlMode = 1;
 	SPI_Init.CPHA = 0;
 	SPI_Init.CPOL = 0;
 	SPI_Init.LSBFirst = 0;
 	SPI_Init.MasterMode = 1;
 	SPI_Init.SelPolarity = 0;
 	SPI_Init.TranBits = 8;
-	ret = VSI_InitSPI(VSI_USBSPI,0,spi_index,&SPI_Init);
+    SPI_Init.SPI_Index = spi_index;
+	ret = VSI_InitSPIEx(VSI_USBSPI,0,&SPI_Init);
 	if(ret != ERR_SUCCESS){
 		printf("Initialization device error :%d\n",ret);
 		return ret;

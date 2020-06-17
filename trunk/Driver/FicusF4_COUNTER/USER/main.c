@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
 	//Clear counter
 	uint32_t CounterValue[4]={0,0,0,0};
 	ret = CNT_SetCounter(CNT_USBCNT,0,CNT_CH0,CounterValue);
-	if(ret != ERR_SUCCESS){
+	if(ret != ERR_SUCCESS){ 
 		printf("Set counter value error!\n");
 		return ret;
 	}
@@ -68,7 +68,7 @@ int main(int argc, char* argv[])
 		ret = CNT_GetCounter(CNT_USBCNT,0,CNT_CH0,CounterValue);
 		if(ret != ERR_SUCCESS){
 			printf("Get counter value error!\n");
-			break;
+			//break;
 		}else{
 			printf("Counter Value :%d\n",CounterValue[0]);
 		}

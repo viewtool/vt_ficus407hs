@@ -129,6 +129,17 @@ typedef struct _VSI_INIT_CONFIG{
     uint8_t     SelPolarity;	
 	uint32_t	ClockSpeed;		
 }VSI_INIT_CONFIG,*PVSI_INIT_CONFIG;
+typedef struct _VSI_INIT_CONFIGEX{
+    uint8_t     SPI_Index;
+    uint8_t     ControlMode;
+    uint8_t     TranBits;		
+    uint8_t     MasterMode;		
+    uint8_t     CPOL;			
+    uint8_t     CPHA;			
+    uint8_t     LSBFirst;		
+    uint8_t     SelPolarity;	
+	uint32_t	ClockSpeed;		
+}VSI_INIT_CONFIGEX,*PVSI_INIT_CONFIGEX;
 
 typedef struct _VSI_FLASH_INIT_CONFIG
 {
@@ -152,7 +163,8 @@ extern int32_t VSI_ScanDevice(uint8_t NeedInit);
 extern int32_t VSI_OpenDevice(int32_t DevType,int32_t DevIndex,int32_t Reserved);
 extern int32_t VSI_CloseDevice(int32_t DevType,int32_t DevIndex);
 
-extern int32_t VSI_InitSPI(int32_t DevType, int32_t DevIndex,int32_t SPI_Index, PVSI_INIT_CONFIG pInitConfig);
+extern int32_t VSI_InitSPI(int32_t DevType, int32_t DevIndex,PVSI_INIT_CONFIG pInitConfig);
+extern int32_t VSI_InitSPIEx(int32_t DevType, int32_t DevIndex,PVSI_INIT_CONFIGEX pInitConfig);
 extern int32_t VSI_WriteBytes(int32_t DevType,int32_t DevIndex,int32_t SPIIndex,uint8_t *pWriteData,uint16_t Len);
 extern int32_t VSI_ReadBytes(int32_t DevType,int32_t DevIndex,int32_t SPIIndex,uint8_t *pReadData,uint16_t Len);
 extern int32_t VSI_WriteReadBytes(int32_t DevType,int32_t DevIndex,int32_t SPIIndex,uint8_t* pWriteData,

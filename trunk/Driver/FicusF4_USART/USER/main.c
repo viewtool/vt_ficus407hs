@@ -60,6 +60,7 @@ int main(int argc, char* argv[])
 	uint16_t Len = 0;
 	uint8_t ReadBuffer[64]={0};
 	uint32_t AllDataNum = 0;
+    Sleep(1000);
 	while(1){
 		ret = UART_ReadBytes(UART_USBUART,0,0,ReadBuffer,&Len);
 		if(ret == ERR_READ_NO_DATA){
