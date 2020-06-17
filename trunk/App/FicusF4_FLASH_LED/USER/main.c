@@ -8,7 +8,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright 2009-2014, ViewTool
+  * Copyright 2009-2020, ViewTool
   * http://www.viewtool.com/
   * All Rights Reserved
   * 
@@ -23,11 +23,27 @@
 #include "vt_gpio.h"
 #include "func_map.h"
 #endif
+#include "vt_driver.h"
+
+/*
+WINAPI: Ficus board is hardware compatible with Ginkgo3 Ficus board, by enable WINAPI, could compile this software on PC
+and run this code on PC (being a USB to GPIO adapter), more detail please look at website Ginkgo3 Ficus or contact: fae@viewtool.com
+
+*/
+#define WINAPI     0
+	
+#define USING_MS_DELAY     1
+
 int main(int argc, char* argv[])
 {
 	// Get GPIO_4 and GPIO_5 status 
     int ret;
-    // Scan connected device
+	  char *vt_bootloader_version = vt_get_bootloader_version();
+	  char *vt_dll_version = vt_get_dll_version();
+	  printf("%s\r\n", vt_bootloader_version);   // HS: High Speed (480M)
+	  printf("%s\r\n", vt_dll_version); 
+#if WINAPI
+	// Scan connected device
     ret = VGI_ScanDevice(1);
     if (ret <= 0)
     {
@@ -41,6 +57,7 @@ int main(int argc, char* argv[])
         printf("Open device error!\r\n");
         return ret;
     } 
+#endif 	
     ret = VGI_SetOutputEx(VGI_USBGPIO, 0, VGI_GPIO_PORTA| VGI_GPIO_PIN6 | VGI_GPIO_PIN7);
     if (ret != ERR_SUCCESS)
     {
@@ -72,7 +89,11 @@ int main(int argc, char* argv[])
         }else{
             printf("Set pin high LED\r\n");
         }        
-        Sleep(1000);
+#if USING_MS_DELAY				
+				vt_delay_ms(500);
+#else 				
+				vt_delay_us(500*1000);
+#endif 				
         // Reset GPIO_7 and GPIO_8 
         ret = VGI_ResetPinsEx(VGI_USBGPIO, 0, VGI_GPIO_PORTA | VGI_GPIO_PIN6 | VGI_GPIO_PIN7);
         if (ret != ERR_SUCCESS)
@@ -90,14 +111,20 @@ int main(int argc, char* argv[])
         }else{
             printf("Set pin low LED\r\n");
         }
-        Sleep(1000);
+#if USING_MS_DELAY				
+				vt_delay_ms(500);
+#else 				
+				vt_delay_us(500*1000);
+#endif 
     }
+#ifdef WINAPI
     ret = VGI_CloseDevice(VGI_USBGPIO, 0);
     if (ret != ERR_SUCCESS)
     {
         printf("Close device error!\r\n");
         return ret;
     }
+#endif 
 	return 0;
 }
 

@@ -99,7 +99,8 @@ int fputc(int ch, FILE *f)
 	return ch;
 }
 #endif
-extern int32_t Sleep(uint32_t nms);
+extern int32_t vt_delay_us(uint32_t us);
+extern int32_t vt_delay_ms(uint32_t ms);
 extern int32_t  VGI_ScanDevice(uint8_t NeedInit);
 extern int32_t  VGI_OpenDevice(int32_t DevType,int32_t DevIndex,int32_t Reserved);
 extern int32_t  VGI_CloseDevice(int32_t DevType,int32_t DevIndex);
