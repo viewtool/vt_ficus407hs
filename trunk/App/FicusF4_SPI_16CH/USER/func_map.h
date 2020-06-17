@@ -270,7 +270,6 @@
 #define J28_P2_P4_I2C		  (0)
 #define J28_P1_P3_I2C         (1)
 
-
 #define J8_P2_P4_P6_P8_SPI0_NSS0    	(0)
 #define J8_P2_P4_P6_J50_P4_SPI0_NSS1    (1)
 #define J8_P2_P4_P6_J50_P6_SPI0_NSS2    (2)
@@ -280,13 +279,14 @@
 #define J8_P2_P4_P6_J50_P14_SPI0_NSS6   (6)
 #define J8_P2_P4_P6_J50_P16_SPI0_NSS7   (7)
 #define J8_P1_P3_P5_P7_SPI1_NSS8    	(8)
-#define J8_P1_P3_P5_J50_P7_SPI1_NSS9    (9)
-#define J8_P1_P3_P5_J50_P7_SPI1_NSS10   (10)
+#define J8_P1_P3_P5_J50_P3_SPI1_NSS9    (9)
+#define J8_P1_P3_P5_J50_P5_SPI1_NSS10   (10)
 #define J8_P1_P3_P5_J50_P7_SPI1_NSS11   (11)
-#define J8_P1_P3_P5_J50_P7_SPI1_NSS12   (12)
-#define J8_P1_P3_P5_J50_P7_SPI1_NSS13   (13)
-#define J8_P1_P3_P5_J50_P7_SPI1_NSS14   (14)
-#define J8_P1_P3_P5_J50_P7_SPI1_NSS15   (15)
+#define J8_P1_P3_P5_J50_P9_SPI1_NSS12   (12)
+#define J8_P1_P3_P5_J50_P11_SPI1_NSS13  (13)
+#define J8_P1_P3_P5_J50_P13_SPI1_NSS14  (14)
+#define J8_P1_P3_P5_J50_P15_SPI1_NSS15  (15)
+
 
 
 #define J15_P7_ADC_CH2		(1<<2)

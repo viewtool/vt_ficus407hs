@@ -110,26 +110,26 @@ int main(int argc, char* argv[])
                 printf("GPIO is low-level!\r\n");
             }
         }
-        ret = VGI_SetOpenDrain(VGI_USBGPIO, 0, num[j]);
+        ret = VGI_SetOpenDrainEx(VGI_USBGPIO, 0, num[j]);
         if (ret != ERR_SUCCESS)
         {
             printf("Set pin open drain error!\r\n");
             return ret;
         }
         
-        ret = VGI_SetPins(VGI_USBGPIO, 0,num[j]);
+        ret = VGI_SetPinsEx(VGI_USBGPIO, 0,num[j]);
         if (ret != ERR_SUCCESS)
         {
             printf("Set pin high error!\r\n");
             return ret;
         }
-        ret = VGI_ResetPins(VGI_USBGPIO, 0, num[j]);
+        ret = VGI_ResetPinsEx(VGI_USBGPIO, 0, num[j]);
         if (ret != ERR_SUCCESS)
         {
             printf("Set pin high error!\r\n");
             return ret;
         }
-        ret = VGI_ReadDatas(VGI_USBGPIO, 0,num[j], &pin_value);
+        ret = VGI_ReadDatasEx(VGI_USBGPIO, 0,num[j], &pin_value);
         if (ret != ERR_SUCCESS)
         {
             printf("Get pin data error!\r\n");

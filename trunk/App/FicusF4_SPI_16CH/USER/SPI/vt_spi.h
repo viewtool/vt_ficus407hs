@@ -1,5 +1,3 @@
-
-
 /**
   ******************************************************************************
   * @file    vt_spi.h
@@ -119,16 +117,48 @@ typedef  struct  _VSI_BOARD_INFO{
 	uint8_t		SerialNumber[12];
 } VSI_BOARD_INFO,*PVSI_BOARD_INFO; 
 
-typedef struct _VSI_INIT_CONFIG{
-    uint8_t     ControlMode;
-    uint8_t     TranBits;		
-    uint8_t     MasterMode;		
-    uint8_t     CPOL;			
-    uint8_t     CPHA;			
-    uint8_t     LSBFirst;		
-    uint8_t     SelPolarity;	
-	uint32_t	ClockSpeed;		
-}VSI_INIT_CONFIG,*PVSI_INIT_CONFIG;
+
+//1. Define data type of initialize SPI
+typedef struct _VSI_INIT_CONFIG {
+	uint8_t     ControlMode;
+	// SPI control mode: 0->hardware control(full duplex) 1->hardware control(half duplex) 2->software control(half duplex) 3-> one wire mode
+	uint8_t     TranBits;
+	// Width  of data (between 8 and 16)
+	uint8_t     MasterMode;
+	// Master mode : 0 -> slave mode 1 -> master mode
+	uint8_t     CPOL;
+	// Clock Polarity: 0 -> SCK active-high  1->SCK active-low 
+	uint8_t     CPHA;
+	// Clock Phase: 0 -> sample on the leading (first) clock edge 1-> sample on the trailing (second) clock edge
+	uint8_t     LSBFirst;
+	// whether or not LSB first: 0->MSB first 1-> LSB first
+	uint8_t     SelPolarity;
+	// Chip select Polarity: 0-> low to select 1-> high to select
+	uint32_t	ClockSpeed;
+	// SPI clock frequency
+}VSI_INIT_CONFIG, *PVSI_INIT_CONFIG;
+
+//2. Define data type of initialize SPI
+typedef struct _VSI_INIT_CONFIG_EX {
+	uint8_t     SPIIndex;
+	// SPI Index: used to select which SPI peripheral to be used in adapter
+	uint8_t     ControlMode;
+	// SPI control mode: 0->hardware control(full duplex) 1->hardware control(half duplex) 2->software control(half duplex) 3-> one wire mode
+	uint8_t     TranBits;
+	// Width  of data (between 8 and 16)
+	uint8_t     MasterMode;
+	// Master mode : 0 -> slave mode 1 -> master mode
+	uint8_t     CPOL;
+	// Clock Polarity: 0 -> SCK active-high  1->SCK active-low 
+	uint8_t     CPHA;
+	// Clock Phase: 0 -> sample on the leading (first) clock edge 1-> sample on the trailing (second) clock edge
+	uint8_t     LSBFirst;
+	// whether or not LSB first: 0->MSB first 1-> LSB first
+	uint8_t     SelPolarity;
+	// Chip select Polarity: 0-> low to select 1-> high to select
+	uint32_t	ClockSpeed;
+	// SPI clock frequency
+}VSI_INIT_CONFIG_EX, *PVSI_INIT_CONFIG_EX;
 
 typedef struct _VSI_FLASH_INIT_CONFIG
 {
@@ -152,7 +182,8 @@ extern int32_t VSI_ScanDevice(uint8_t NeedInit);
 extern int32_t VSI_OpenDevice(int32_t DevType,int32_t DevIndex,int32_t Reserved);
 extern int32_t VSI_CloseDevice(int32_t DevType,int32_t DevIndex);
 
-extern int32_t VSI_InitSPI(int32_t DevType, int32_t DevIndex,int32_t SPI_Index, PVSI_INIT_CONFIG pInitConfig);
+extern int32_t VSI_InitSPI(int32_t DevType, int32_t DevIndex,PVSI_INIT_CONFIG pInitConfig);
+extern int32_t VSI_InitSPIEx(int32_t DevType, int32_t DevIndex,PVSI_INIT_CONFIG_EX pInitConfig);
 extern int32_t VSI_WriteBytes(int32_t DevType,int32_t DevIndex,int32_t SPIIndex,uint8_t *pWriteData,uint16_t Len);
 extern int32_t VSI_ReadBytes(int32_t DevType,int32_t DevIndex,int32_t SPIIndex,uint8_t *pReadData,uint16_t Len);
 extern int32_t VSI_WriteReadBytes(int32_t DevType,int32_t DevIndex,int32_t SPIIndex,uint8_t* pWriteData,
