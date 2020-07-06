@@ -25,8 +25,8 @@
 #endif
 #include <stdlib.h>
 
-#define	SLAVE_WRITE	    1
-#define SLAVE_READ	    0
+#define	SLAVE_WRITE	    0
+#define SLAVE_READ	    1
 #define DEVICE_INDEX	0
 
 int main(void)
