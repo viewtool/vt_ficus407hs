@@ -310,8 +310,6 @@
 #define J5_P8_ADC_CH1		(1<<1)
 #define J5_P10_ADC_CH0		(1<<0)
 
-
-
 #define J2_P1_CNT_CH0 		(1<<0)
 #define J2_P5_CNT_CH1		(1<<1)
 

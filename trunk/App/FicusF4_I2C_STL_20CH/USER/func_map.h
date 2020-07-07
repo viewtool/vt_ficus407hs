@@ -264,9 +264,6 @@
 #define J2_P12_P14_I2C_STL_CH18    (18)
 #define J5_P1_P7_I2C_STL_CH19      (19)
 
-
-
-
 #define J28_P2_P4_I2C		  (0)
 #define J28_P1_P3_I2C         (1)
 
@@ -287,7 +284,6 @@
 #define J8_P1_P3_P5_J50_P7_SPI1_NSS13   (13)
 #define J8_P1_P3_P5_J50_P7_SPI1_NSS14   (14)
 #define J8_P1_P3_P5_J50_P7_SPI1_NSS15   (15)
-
 
 #define J15_P7_ADC_CH2		(1<<2)
 #define J15_P9_ADC_CH3		(1<<3)	
