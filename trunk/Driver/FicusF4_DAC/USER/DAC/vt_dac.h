@@ -6,11 +6,12 @@
 
 
 // Define adapter type
-#define VAO_USBDAC		(1)		//device type
+#define VDA_USBDAC		(1)		//device type
 
 // define ADC channel
-#define	VAO_DAC_CH0		(1<<0)	// DAC_CH0	
-#define	VAO_DAC_CH1		(1<<1)	// DAC_CH1	
+#define	VDA_DAC_CH0		(1<<0)	// DAC_CH0	
+#define	VDA_DAC_CH1		(1<<1)	// DAC_CH1	
+
 
 
 //General Error Code
@@ -94,13 +95,14 @@ typedef  struct  _VAO_BOARD_INFO{
 	uint16_t	Reserved[4];		// reserved
 } VAO_BOARD_INFO,*PVAO_BOARD_INFO; 
 
-extern int32_t VAO_ScanDevice(uint8_t NeedInit);
-extern int32_t VAO_OpenDevice(int32_t DevType,int32_t DevIndex,int32_t Reserved);
-extern int32_t VAO_CloseDevice(int32_t DevType,int32_t DevIndex);
-extern int32_t VAO_ReadBoardInfo(int32_t DevType,int32_t DevIndex,PVAO_BOARD_INFO pInfo);
-extern int32_t VAO_InitDAC(int32_t DevType, int32_t DevIndex, uint8_t Channel, uint16_t Cycle);
-extern int32_t VAO_Start(int32_t DevType,int32_t DevIndex,uint8_t Channel,uint16_t Data,uint16_t DataNum);
-extern int32_t VAO_Stop(int32_t DevType,int32_t DevIndex,uint8_t Channel);
+
+extern int32_t VDA_ScanDevice(uint8_t NeedInit);
+extern int32_t VDA_OpenDevice(int32_t DevType,int32_t DevIndex,int32_t Reserved);
+extern int32_t VDA_CloseDevice(int32_t DevType,int32_t DevIndex);
+extern int32_t VDA_ReadBoardInfo(int32_t DevType,int32_t DevIndex,PVAO_BOARD_INFO pInfo);
+extern int32_t VDA_InitDAC(int32_t DevType, int32_t DevIndex,uint8_t Channel,uint16_t *pWaveData,uint16_t WaveDataNum,uint16_t Period);
+extern int32_t VDA_StartDAC(int32_t DevType,int32_t DevIndex,uint8_t Channel);
+extern int32_t VDA_StopDAC(int32_t DevType,int32_t DevIndex,uint8_t Channel);
 
 #endif
 
