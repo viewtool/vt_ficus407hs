@@ -127,7 +127,7 @@ void UsageFault_Handler(void)
   */
 void SVC_Handler(void)
 {
-
+    OS_SVC_Handler();
 }
 
 /**
@@ -147,7 +147,7 @@ void DebugMon_Handler(void)
   */
 void PendSV_Handler(void)
 {
-
+     OS_PendSV_Handler();
 }
 
 /**
@@ -155,6 +155,95 @@ void PendSV_Handler(void)
   * @param  None
   * @retval None
   */
+void SysTick_Handler(void)
+{
+   OS_SysTick_Handler();
+}
+
+void I2C1_EV_IRQHandler(void)
+{
+	I2C1_EV_IRQ_Handler();
+}
+void I2C2_EV_IRQHandler(void)
+{
+	I2C2_EV_IRQ_Handler();
+}
+void TIM6_DAC_IRQHandler(void)
+{
+	TIM6_DAC_IRQ_Handler();
+}
+void DMA2_Stream0_IRQHandler(void)
+{
+	DMA2_Stream0_IRQ_Handler();
+}
+void TIM2_IRQHandler(void)
+{
+	TIM2_IRQ_Handler();
+}
+void TIM3_IRQHandler(void)
+{
+	TIM3_IRQ_Handler();
+}
+void CAN1_RX0_IRQHandler(void)
+{
+	CAN1_RX0_IRQ_Handler();
+}
+void CAN1_RX1_IRQHandler(void)
+{
+	CAN1_RX1_IRQ_Handler();
+}
+void CAN2_RX0_IRQHandler(void)
+{
+	CAN2_RX0_IRQ_Handler();
+}
+void CAN2_RX1_IRQHandler(void)
+{
+	CAN2_RX1_IRQ_Handler();
+}
+void TIM4_IRQHandler(void)
+{
+	TIM4_IRQ_Handler();
+}
+void TIM5_IRQHandler(void)
+{
+	TIM5_IRQ_Handler();
+}
+void DMA2_Stream3_IRQHandler(void)
+{
+	DMA2_Stream3_IRQ_Handler();
+}
+void DMA2_Stream4_IRQHandler(void)
+{
+	DMA2_Stream4_IRQ_Handler();
+}
+void USART1_IRQHandler(void)
+{
+	USART1_IRQ_Handler();
+}
+void USART2_IRQHandler(void)
+{
+	USART2_IRQ_Handler();
+}
+void USART3_IRQHandler(void)
+{
+	USART3_IRQ_Handler();
+}
+void OTG_HS_IRQHandler(void)
+{
+	OTG_HS_IRQ_Handler();
+}
+void OTG_FS_IRQHandler(void)
+{
+	OTG_FS_IRQ_Handler();
+}
+void OTG_HS_EP1_IN_IRQHandler(void)
+{
+	OTG_HS_EP1_IN_IRQ_Handler();
+}
+void OTG_HS_EP1_OUT_IRQHandler(void)
+{
+	OTG_HS_EP1_OUT_IRQ_Handler();
+}
 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
