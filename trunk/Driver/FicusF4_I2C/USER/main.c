@@ -71,16 +71,22 @@
 #include "vt_i2c.h"
 #include "func_map.h"
 #endif
-
+uint16_t databuffer[1000];
+uint16_t timebuffer[1000];
 int main(int argc, char* argv[])
 {
 	int ret,i;
 	VII_INIT_CONFIG I2C_Config;
 	VII_BOARD_INFO BoardInfo;
+    VII_SNIFFER_CONFIG I2C_SnifferConfig;
 	uint8_t write_buffer[8]={0};
 	uint8_t	read_buffer[8]={0};
-    int8_t I2C_Index = 0;
-	//Scan device
+    int8_t I2C_Index = 1;
+    I2C_SnifferConfig.DataBuffer  = databuffer;
+    I2C_SnifferConfig.DataBuffLen = 1000;
+    I2C_SnifferConfig.TimBuffer = timebuffer;
+    I2C_SnifferConfig.TimBuffLen = 1000;
+    VII_SnifferInit(VII_USBI2C,0,I2C_Index,&I2C_SnifferConfig);	//Scan device
 	ret = VII_ScanDevice(1);
 	if(ret <= 0)
 	{

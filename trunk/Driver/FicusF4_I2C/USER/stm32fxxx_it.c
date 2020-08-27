@@ -244,6 +244,10 @@ void OTG_HS_EP1_OUT_IRQHandler(void)
 {
 	OTG_HS_EP1_OUT_IRQ_Handler();
 }
+void EXTI15_10_IRQHandler(void)
+{
+	EXTI15_10_IRQ_Handler();
+}
 
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

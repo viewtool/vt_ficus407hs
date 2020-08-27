@@ -54,7 +54,11 @@ extern void OTG_HS_EP1_OUT_IRQ_Handler(void);
 extern void OS_SVC_Handler(void);
 extern void OS_PendSV_Handler(void);
 extern void OS_SysTick_Handler(void);
-
+extern void DMA2_Stream7_IRQ_Handler(void);
+extern void DMA1_Stream6_IRQ_Handler(void);
+extern void DMA1_Stream3_IRQ_Handler(void);
+extern void DMA1_Stream4_IRQ_Handler(void);
+extern void UART4_IRQ_Handler(void);
 /******************************************************************************/
 /*             Cortex-M Processor Exceptions Handlers                         */
 /******************************************************************************/
@@ -159,7 +163,18 @@ void SysTick_Handler(void)
 {
    OS_SysTick_Handler();
 }
-
+void DMA2_Stream7_IRQHandler(void)
+{
+    DMA2_Stream7_IRQ_Handler();
+}
+void DMA1_Stream6_IRQHandler(void)
+{
+    DMA1_Stream6_IRQ_Handler();
+}
+void DMA1_Stream3_IRQHandler(void)
+{
+    DMA1_Stream3_IRQ_Handler();
+}
 void I2C1_EV_IRQHandler(void)
 {
 	I2C1_EV_IRQ_Handler();
@@ -175,6 +190,10 @@ void TIM6_DAC_IRQHandler(void)
 void DMA2_Stream0_IRQHandler(void)
 {
 	DMA2_Stream0_IRQ_Handler();
+}
+void DMA1_Stream4_IRQHandler(void)
+{
+	DMA1_Stream4_IRQ_Handler();
 }
 void TIM2_IRQHandler(void)
 {
@@ -227,6 +246,10 @@ void USART2_IRQHandler(void)
 void USART3_IRQHandler(void)
 {
 	USART3_IRQ_Handler();
+}
+void UART4_IRQHandler(void)
+{
+	UART4_IRQ_Handler();
 }
 void OTG_HS_IRQHandler(void)
 {

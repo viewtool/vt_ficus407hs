@@ -92,7 +92,7 @@ int main(int argc, char* argv[])
 	InitConfig.RS485Mode = 485;
 	InitConfig.StopBits = 0;
 	InitConfig.WordLength = 8;
-	ret = UART_InitDevice(UART_USBUART,0,0,&InitConfig);
+	ret = UART_InitDevice(UART_USBUART,0,1,&InitConfig);
 	if(ret != ERR_SUCCESS){
 		printf("Initialize device error!\n");
 		return 0;
@@ -101,7 +101,7 @@ int main(int argc, char* argv[])
 	for(int i=0;i<sizeof(WriteBuffer);i++){
 		WriteBuffer[i] = i;
 	}
-	ret = UART_WriteBytes(UART_USBUART,0,0,WriteBuffer,64);
+	ret = UART_WriteBytes(UART_USBUART,0,1,WriteBuffer,64);
 	if(ret != ERR_SUCCESS){
 		printf("Write data error!\n");
 		return 0;
@@ -111,7 +111,7 @@ int main(int argc, char* argv[])
 	uint32_t AllDataNum = 0;
     Sleep(1000);
 	while(1){
-		ret = UART_ReadBytes(UART_USBUART,0,0,ReadBuffer,&Len);
+		ret = UART_ReadBytes(UART_USBUART,0,1,ReadBuffer,&Len);
 		if(ret == ERR_READ_NO_DATA){
 			Sleep(50);
 			continue;
@@ -131,7 +131,7 @@ int main(int argc, char* argv[])
 			Sleep(50);
 		}else{
 			printf("Read data error!\n");
-			return 0;
+			//return 0;
 		}
 	}
 	return 0;

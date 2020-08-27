@@ -152,7 +152,12 @@ typedef struct _VII_TIME_CONFIG
     uint16_t tStart;
     uint16_t tStop;
 }VII_TIME_CONFIG,*PVII_TIME_CONFIG;
-
+typedef struct _VII_SNIFFER_CONFIG{
+    uint16_t* TimBuffer;
+    uint16_t* DataBuffer;
+    uint16_t  TimBuffLen;
+    uint16_t  DataBuffLen;
+}VII_SNIFFER_CONFIG,*PVII_SNIFFER_CONFIG;
 //extern I2C_INIT_INFO I2C_Info[];	///<I2C控制器相关信息
 //extern IICTime 		swi2c_time;
 

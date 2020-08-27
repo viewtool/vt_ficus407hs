@@ -86,7 +86,7 @@
 #endif
 
 int main(int argc, char* argv[])
-{
+ {
     int ret;
 	VAI_BOARD_INFO pInfo;
 	uint8_t SamplingCnt = 0;

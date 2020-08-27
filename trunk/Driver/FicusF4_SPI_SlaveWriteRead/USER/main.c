@@ -114,7 +114,7 @@ int main(void)
     // Initializes the device
     SPI_Config.ControlMode = 1;
     SPI_Config.MasterMode = 0;
-    SPI_Config.ClockSpeed = 42000000;
+    SPI_Config.ClockSpeed = 1;
     SPI_Config.CPHA = 0;
     SPI_Config.CPOL = 0;
     SPI_Config.LSBFirst = 0;

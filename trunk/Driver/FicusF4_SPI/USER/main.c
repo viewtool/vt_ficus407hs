@@ -96,7 +96,7 @@ int main(int argc, char* argv[])
 	VSI_INIT_CONFIGEX	SPI_Init;
 	uint8_t	WriteDataTemp[512]={0};
 	uint8_t	ReadDataTemp[512]={0};
-    uint8_t spi_index = 1;
+    uint8_t spi_index = 0;
 	// Check the device number of connections
 	ret = VSI_ScanDevice(1);
 	if(ret>0){
@@ -116,8 +116,8 @@ int main(int argc, char* argv[])
 	// Device initialization
 	SPI_Init.ClockSpeed = 1125000;
 	SPI_Init.ControlMode = 1;
-	SPI_Init.CPHA = 0;
-	SPI_Init.CPOL = 0;
+	SPI_Init.CPHA = 1;
+	SPI_Init.CPOL = 1;
 	SPI_Init.LSBFirst = 0;
 	SPI_Init.MasterMode = 1;
 	SPI_Init.SelPolarity = 0;

@@ -122,14 +122,14 @@ int main(int argc, char* argv[])
         return ret;
     }
     // Set GPIOA_4 and GPIOA_5 to input 
-    ret = VGI_SetInputEx(VGI_USBGPIO, 0, VGI_GPIO_PORTA | VGI_GPIO_PIN4 | VGI_GPIO_PIN5);
+    ret = VGI_SetInputEx(VGI_USBGPIO, 0, VGI_GPIO_PORTA | VGI_GPIO_PIN4 | VGI_GPIO_PIN6);
     if (ret != ERR_SUCCESS)
     {
         printf("Set pin input error!\r\n");
         return ret;
     }
 	// Read GPIOA_4 and GPIOA_5 Data 
-    ret = VGI_ReadDatasEx(VGI_USBGPIO, 0,VGI_GPIO_PORTA | VGI_GPIO_PIN4 | VGI_GPIO_PIN5, &pin_value);
+    ret = VGI_ReadDatasEx(VGI_USBGPIO, 0,VGI_GPIO_PORTA | VGI_GPIO_PIN4 | VGI_GPIO_PIN6, &pin_value);
     if (ret != ERR_SUCCESS)
     {
         printf("Get pin data error!\r\n");
@@ -154,26 +154,26 @@ int main(int argc, char* argv[])
             printf("GPIOA_5 is low-level!\r\n");
         }
     }
-    ret = VGI_SetOpenDrainEx(VGI_USBGPIO, 0, VGI_GPIO_PORTA | VGI_GPIO_PIN4 | VGI_GPIO_PIN5);
+    ret = VGI_SetOpenDrainEx(VGI_USBGPIO, 0, VGI_GPIO_PORTA | VGI_GPIO_PIN4 | VGI_GPIO_PIN6);
     if (ret != ERR_SUCCESS)
     {
         printf("Set pin open drain error!\r\n");
         return ret;
     }
 	
-    ret = VGI_SetPinsEx(VGI_USBGPIO, 0,VGI_GPIO_PORTA | VGI_GPIO_PIN4 | VGI_GPIO_PIN5);
+    ret = VGI_SetPinsEx(VGI_USBGPIO, 0,VGI_GPIO_PORTA | VGI_GPIO_PIN4 | VGI_GPIO_PIN6);
     if (ret != ERR_SUCCESS)
     {
         printf("Set pin high error!\r\n");
         return ret;
     }
-    ret = VGI_ResetPinsEx(VGI_USBGPIO, 0, VGI_GPIO_PORTA | VGI_GPIO_PIN4 | VGI_GPIO_PIN5);
+    ret = VGI_ResetPinsEx(VGI_USBGPIO, 0, VGI_GPIO_PORTA | VGI_GPIO_PIN4 | VGI_GPIO_PIN6);
     if (ret != ERR_SUCCESS)
     {
         printf("Set pin high error!\r\n");
         return ret;
     }
-    ret = VGI_ReadDatasEx(VGI_USBGPIO, 0,VGI_GPIO_PORTA | VGI_GPIO_PIN4 | VGI_GPIO_PIN5, &pin_value);
+    ret = VGI_ReadDatasEx(VGI_USBGPIO, 0,VGI_GPIO_PORTA | VGI_GPIO_PIN4 | VGI_GPIO_PIN6, &pin_value);
     if (ret != ERR_SUCCESS)
     {
         printf("Get pin data error!\r\n");

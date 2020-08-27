@@ -141,7 +141,7 @@ int main(int argc, char* argv[])
 	//Write 8 byte data to 0x00
 	for (i = 0; i < 8; i++)
     {
-        write_buffer[i] = i;
+        write_buffer[i] = i*3;
     }
     ret = VII_WriteBytes(VII_USBI2C, 0, I2C_Index, 0xA0, 0x00, write_buffer, 8);
     if (ret != ERR_SUCCESS)
