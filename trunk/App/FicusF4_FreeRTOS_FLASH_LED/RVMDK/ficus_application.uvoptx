@@ -165,22 +165,6 @@
           <ExecCommand></ExecCommand>
           <Expression>\\ficus_application\../USER/main.c\138</Expression>
         </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>167</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134349386</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\USER\main.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\ficus_application\../USER/main.c\167</Expression>
-        </Bp>
       </Breakpoint>
       <MemoryWindow1>
         <Mm>
