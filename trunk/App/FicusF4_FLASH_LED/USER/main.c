@@ -147,7 +147,7 @@ int main(int argc, char* argv[])
             printf("Set pin high LED\r\n");
         }        
 #if USING_MS_DELAY				
-				Sleep(500);
+				Sleep(50);
 #else 				
 				vt_delay_us(500*1000);
 #endif 				
@@ -169,7 +169,7 @@ int main(int argc, char* argv[])
             printf("Set pin low LED\r\n");
         }
 #if USING_MS_DELAY				
-				Sleep(500);
+				Sleep(50);
 #else 				
 				vt_delay_us(500*1000);
 #endif 
